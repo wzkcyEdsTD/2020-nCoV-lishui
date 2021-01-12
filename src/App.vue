@@ -58,7 +58,7 @@ export default {
     return {
       toptab: [{ label: "防疫布控", route: "macroscopic" }],
       titleHash: {
-        0: "鹿城区新冠肺炎防控指挥地图",
+        0: "新冠肺炎防控指挥地图",
       },
       current: 0,
       time: " ",
@@ -109,7 +109,6 @@ export default {
       const { name } = this.$router.history.current;
       this.toptab.map((item, index) => {
         if (item.route === name) {
-          // console.log(this.countryName);
           this.current = this.countryName != "" ? 2 : index;
         }
       });
