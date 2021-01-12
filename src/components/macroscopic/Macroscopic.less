@@ -1,0 +1,61 @@
+.Macroscopic {
+
+    .toptab_time {
+        position: absolute;
+        width: 100%;
+        top: 50px;
+        z-index: 20;
+
+        p {
+            color: #fff;
+        }
+    }
+
+
+
+    .Com_container {
+        z-index: 30;
+
+        >div {
+            position: fixed;
+            top: 10%;
+            height: 88%;
+        }
+
+        .leftside {
+            width: 340px;
+        }
+
+        .rightside {
+            width: 480px;
+            right: 0px;
+
+            #rightFrame {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+
+                border-left: 1px solid;
+
+                background: linear-gradient(180deg,
+                        rgba(0, 63, 189, 0.6) 0%,
+                        rgba(5, 53, 129, 0.6) 100%);
+                box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.4),
+                    0px 0px 44px 0px rgba(16, 146, 236, 0.3);
+
+                border-image: linear-gradient(360deg,
+                        rgba(7, 73, 190, 0) 0%,
+                        rgba(0, 172, 255, 0.4) 32%,
+                        rgba(0, 255, 255, 0.8) 51%,
+                        rgba(0, 172, 255, 0.4) 73%,
+                        rgba(7, 73, 190, 0) 100%) 1 10;
+
+                >div {
+                    box-sizing: border-box;
+                }
+            }
+        }
+    }
+
+    /* common  */
+}
