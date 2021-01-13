@@ -22,48 +22,6 @@ export default {
     return obj;
   },
   /**
-   * token获取
-   * @param
-   */
-  getGenerateToken: (ajax, GET_ARCGIS_TOKEN, fn) => {
-    const tokenDeferred = ajax({
-      type: "POST",
-      url: GET_ARCGIS_TOKEN,
-      data: {
-        username: "portaladmin",
-        password: "wzkcy123",
-        client: "requestip",
-        ip: "",
-        referer: "",
-        expiration: 60,
-        f: "json"
-      },
-      dataType: "json"
-    });
-    tokenDeferred &&
-      tokenDeferred.then(response => {
-        if (response.code && response.code == 400) {
-          fn(response.code);
-        } else {
-          fn(response);
-        }
-      });
-  },
-  /**
-   * 获取cookie属性
-   * @param {*} name
-   */
-  getCookie(name) {
-    const teamStr = "MaX9493sw5w=";
-    const sName = name + teamStr;
-    var aCookie = document.cookie.replace(/\ /g, "").split(";");
-    for (var i = 0; i < aCookie.length; i++) {
-      var aCrumb = aCookie[i].split("=");
-      if (sName == unescape(aCrumb[0])) return unescape(decodeURI(aCrumb[1]));
-    }
-    return "";
-  },
-  /**
    * 深拷贝
    * @param {*} obj
    */
@@ -111,7 +69,7 @@ export default {
    * @param {*} val 
    * @param {*} isJson 
    */
-  removeStorage(key, ) {
+  removeStorage(key) {
     window.localStorage.removeItem(key);
   },
   /**
@@ -120,7 +78,6 @@ export default {
   getTime() {
     var date = new Date(+new Date() - 1000 * 3600 * 24);
     var seperator1 = "-";
-    var seperator2 = ":";
     //以下代码依次是获取当前时间的年月日时分秒
     var year = date.getFullYear();
     var month = date.getMonth() + 1;
@@ -151,18 +108,3 @@ export default {
       strDate;
   }
 };
-
-
-function deepClone(data) {
-  if (!data || !(data instanceof Object) || typeof data == "function") {
-    return data || undefined;
-  }
-  var constructor = data.constructor;
-  var result = new constructor();
-  for (var key in data) {
-    if (data.hasOwnProperty(key)) {
-      result[key] = deepClone(data[key]);
-    }
-  }
-  return result;
-}
