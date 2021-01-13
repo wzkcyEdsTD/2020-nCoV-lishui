@@ -2,9 +2,11 @@
  * vue.config
  * created by eds 2019/8/22
  */
+const path = require('path');
+
 module.exports = {
   //  打包静态文件访问相对路径设置
-  publicPath: "./",
+  // publicPath: "./",
   assetsDir: "libs",
   devServer: {
     proxy: {
@@ -18,6 +20,12 @@ module.exports = {
       }
     }
   },
+  //  多页面
+  pages: {
+    index: "src/modules/index/main.js",
+    login: "src/modules/login/main.js",
+  },
+  //  打包后分析包大小
   chainWebpack: (config) => {
     /* 添加分析工具*/
     if (process.env.NODE_ENV === 'production') {
@@ -29,5 +37,13 @@ module.exports = {
         config.plugins.delete('prefetch')
       }
     }
-  }
+  },
+  //  alias
+  configureWebpack: {
+    resolve: {
+      alias: {
+        store: path.join(__dirname, 'src/store'),
+      },
+    },
+  },
 };

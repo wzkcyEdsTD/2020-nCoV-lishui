@@ -1,47 +1,18 @@
 import Vue from "vue";
 import App from "./App.vue";
-import util from "./components/common/util.js";
+import util from "@/components/common/util.js";
 import router from "./router";
-import store from "./store";
+import store from "@/store";
 // import "./components/common/_iconfont/iconfont.js";
-import "./components/common/_iconfont/iconfont.css";
+import "@/components/common/_iconfont/iconfont.css";
 import echarts from "echarts/lib/echarts";
 import {
   auth_token,
   auth_token_info
-} from "./api/beans/auth";
+} from "@/api/beans/auth";
+import ElementUI from "element-ui";
 
-import 'element-ui/lib/theme-chalk/index.css';
-
-import {
-  Button,
-  Select,
-  Table,
-  TableColumn,
-  DropdownMenu,
-  DropdownItem,
-  Dropdown,
-  Carousel,
-  CarouselItem,
-  Popover,
-  Option,
-  Avatar,
-  Input
-} from 'element-ui';
-Vue.use(Button)
-Vue.use(Select)
-Vue.use(Table)
-Vue.use(TableColumn)
-Vue.use(Dropdown)
-Vue.use(DropdownMenu)
-Vue.use(Carousel)
-Vue.use(CarouselItem)
-Vue.use(DropdownItem)
-Vue.use(Popover)
-Vue.use(Option)
-Vue.use(Avatar)
-Vue.use(Input)
-
+Vue.use(ElementUI);
 // filter production infos
 Vue.prototype.$echarts = echarts;
 Vue.config.productionTip = false;

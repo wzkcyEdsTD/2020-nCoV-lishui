@@ -1,18 +1,23 @@
 <template>
   <label role="checkbox" :class="['switch', { toggled }]">
     <input type="checkbox" class="switch-input" @change="toggle" />
-    <div class="switch-core" :style="{backgroundColor: toggled ? colorChecked  : colorUnchecked}">
+    <div
+      class="switch-core"
+      :style="{ backgroundColor: toggled ? colorChecked : colorUnchecked }"
+    >
       <div
         class="switch-button"
-        :style="{transition: `transform ${speed}ms`,
-           transform: toggled ? null: `translate3d(0px, 0px, 0px)`}"
+        :style="{
+          transition: `transform ${speed}ms`,
+          transform: toggled ? null : `translate3d(0px, 0px, 0px)`,
+        }"
       ></div>
     </div>
     <span class="switch-label label-right" v-if="toggled"></span>
     <span class="switch-label label-left" v-else></span>
   </label>
 </template>
- 
+
 <script>
 export default {
   name: "ToggleSwitch",
@@ -21,19 +26,19 @@ export default {
       toggled: false,
       colorChecked: "#25b9e9",
       colorUnchecked: "#db572e",
-      speed: 100
+      speed: 100,
     };
   },
   props: {},
   methods: {
-    toggle(event) {
+    toggle() {
       this.toggled = !this.toggled;
       this.$emit("change", this.toggled);
-    }
-  }
+    },
+  },
 };
 </script>
- 
+
 <style lang="less" scoped>
 .switch {
   display: inline-block;

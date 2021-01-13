@@ -47,7 +47,7 @@
 
 <script>
 /* eslint-disable */
-import router from "@/router";
+import router from "./router";
 import { OPTION, GET_ARCGIS_TOKEN, WRT_config } from "@/components/common/Tmap";
 import { fixMenuList } from "@/components/common/user/menuHash";
 import Passport from "@/components/common/user/Passport";
