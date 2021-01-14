@@ -6,31 +6,14 @@ import store from "@/store";
 // import "./components/common/_iconfont/iconfont.js";
 import "@/components/common/_iconfont/iconfont.css";
 import echarts from "echarts/lib/echarts";
-import {
-  auth_token,
-  auth_token_info
-} from "@/api/beans/auth";
+import { doAccess_fetchUser } from "@/api/userAPI"
 import ElementUI from "element-ui";
 
 Vue.use(ElementUI);
-// filter production infos
 Vue.prototype.$echarts = echarts;
 Vue.config.productionTip = false;
 Vue.prototype.$util = util;
 Vue.prototype.$window = window;
-
-//路由跳转
-Vue.prototype.$goRoute = function (index, flag) {
-  if (flag) {
-    this.$router.push({
-      name: index,
-      params: {
-        Jump: false
-      }
-    });
-  }
-
-};
 
 /**
  * 生产环境入口页面:9003上跳转内部页面:5001带token
@@ -42,38 +25,30 @@ const tokenCatch = () => {
   } = Vue.prototype.$util.fetchQuerys();
   if (access_token) {
     localStorage.setItem("access_token", access_token);
-    // Vue.prototype.$util.setStorage("access_token", access_token);
-    window.location.href = "./index.html";
+    window.location.href = "/#/";
   }
 };
 tokenCatch();
+
 /**
- * 本地调试、对外环境不需要手动登录
- * dev      admin
- * outside  游客
+ * app init
  */
 const app = async fn => {
-  if (!sessionStorage.getItem("shallRefresh")) {
-    sessionStorage.setItem("shallRefresh", true);
-    location.reload();
+  try {
+    const { isValidToken, userInfo } = await doAccess_fetchUser();
+    if (isValidToken) {
+      window.location.href = "/login.html"
+    } else {
+      window.userInfo = userInfo;
+      fn && fn()
+    }
+  } catch (e) {
+    window.location.href = "/login.html";
   }
-  window.shallLogin && await auth_token();
 
-  const [{
-    au_username,
-    group,
-    au_userid
-  }] = await auth_token_info();
-  window.user = {
-    au_username,
-    group,
-    au_userid,
-  };
-
-  fn && fn();
 };
 app(() => {
-  new Vue({
+  window.indexVue = new Vue({
     router,
     store,
     render: h => h(App)

@@ -61,7 +61,7 @@
 
 <script>
 /* eslint-disable */
-// import { auth_token, getTokenInfo } from "@/api/beans/aubean";
+import { WRT_config } from "@/components/common/Tmap";
 import { doLogin } from "@/api/loginAPI";
 export default {
   data() {
@@ -87,6 +87,9 @@ export default {
         try {
           const res = await doLogin(this.form);
           this.doMessage("登陆成功");
+          setTimeout(() => {
+            window.location.href = `/?access_token=${res.token}`;
+          }, 500);
         } catch (message) {
           this.doMessage(message, false);
         }

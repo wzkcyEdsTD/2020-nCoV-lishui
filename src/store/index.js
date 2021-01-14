@@ -5,7 +5,7 @@ Vue.use(Vuex);
 import {
   lc_xqcrjl,
   lc_xqryxx,
-} from "@/api/beans/fetch";
+} from "@/api/tableAPI";
 export default new Vuex.Store({
   state: {
     // 出入记录
