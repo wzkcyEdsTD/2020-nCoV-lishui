@@ -54,8 +54,6 @@ export default {
     const that = this;
     /**init map**/
     await this.createMap();
-    // await this.addQh();
-    // await this.addmbk();
     await this.addChanyePlate();
 
     // 添加图例标题
@@ -257,23 +255,7 @@ export default {
         context.$parent.legend();
       });
     },
-    //  添加区划图
-    addQh() {
-      const that = this;
-      return new Promise((resolve, reject) => {
-        loadModules(["esri/layers/MapImageLayer"], OPTION).then(
-          ([MapImageLayer]) => {
-            const qh = new MapImageLayer({
-              url: QHMB,
-              id: "lcjjdt",
-              sublayers: [{ id: 3 }, { id: 0 }]
-            });
-            that.map.add(qh, 4);
-            resolve(true);
-          }
-        );
-      });
-    },
+
     // 定位
     goloaction({
       id,
@@ -416,23 +398,6 @@ export default {
       };
       that.view.popup.alignment = "top-center";
       that.view.popup.visible = true;
-    },
-    // 蒙白
-    addmbk() {
-      const that = this;
-      return new Promise((resolve, reject) => {
-        loadModules(["esri/layers/MapImageLayer"], OPTION).then(
-          ([MapImageLayer]) => {
-            const mbk = new MapImageLayer({
-              url: QHMB,
-              id: "mbk",
-              sublayers: [{ id: 1 }]
-            });
-            that.map.add(mbk, 4);
-            resolve(true);
-          }
-        );
-      });
     },
     //产业板块
     addChanyePlate() {

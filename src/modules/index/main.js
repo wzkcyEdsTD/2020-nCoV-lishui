@@ -36,7 +36,7 @@ tokenCatch();
 const app = async fn => {
   try {
     const { isValidToken, userInfo } = await doAccess_fetchUser();
-    if (isValidToken) {
+    if (!isValidToken) {
       window.location.href = "/login.html"
     } else {
       window.userInfo = userInfo;

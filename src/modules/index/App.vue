@@ -60,7 +60,7 @@ export default {
       },
       current: 0,
       time: "",
-      au_username: window.user.au_username,
+      au_username: window.userInfo.username,
       showPassport: false,
     };
   },

@@ -3,8 +3,7 @@ import Vue from "vue";
 import Vuex from "vuex";
 Vue.use(Vuex);
 import {
-  lc_xqcrjl,
-  lc_xqryxx,
+  fetchTableByApi
 } from "@/api/tableAPI";
 export default new Vuex.Store({
   state: {
@@ -23,16 +22,14 @@ export default new Vuex.Store({
   },
   actions: {
     async fetchcrjlList({ state, commit }) {
-      const {
-        data
-      } = await lc_xqcrjl();
-      commit('updatecrjlList', data)
+      const table = "CommunityCrjl";
+      const arr = await fetchTableByApi(table);
+      commit('updatecrjlList', arr ? arr.map(v => v[table]) : [])
     },
     async fetchryxxList({ state, commit }) {
-      const {
-        data
-      } = await lc_xqryxx();
-      commit('updateryxxList', data)
+      const table = "CommunityRyxx";
+      const arr = await fetchTableByApi(table);
+      commit('updateryxxList', arr ? arr.map(v => v[table]) : [])
     },
   }
 });

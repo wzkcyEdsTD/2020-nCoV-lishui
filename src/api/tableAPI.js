@@ -1,5 +1,5 @@
 import axios from "axios";
-const BASEURL = "http://192.168.54.124:8080";
+const BASEURL = "http://172.28.88.251:8080/api";
 const serverInstanec = axios.create();
 serverInstanec.defaults.baseURL = BASEURL;
 
@@ -16,37 +16,40 @@ serverInstanec.interceptors.request.use(config => {
  * @param {*} tableName 
  */
 const apiJSonGet = (tableName) => {
-    const option = { url: "/commonApijson/get", method: "post" };
+    const option = { url: "/commonApiJson/get", method: "post" };
     option.data = {
         "[]": {
             [tableName]: {}
         }
     };
     return serverInstanec.request(option).then(res => {
-        console.log(res);
         //  status判断登录状态 
         if (res.data.status == 500) {
+            doMessage(res.data.message)
             return Promise.reject(res.data.message)
         }
         //  code判断业务错误
         if (res.data.code == 200) {
-            return Promise.resolve(res.data.result);
+            return Promise.resolve(res.data["[]"]);
         } else {
+            doMessage(res.data.message)
             return Promise.reject(res.data.message)
         }
     });
 };
 
 /**
- * [lc_xqcrjl]小区出入记录
+ * 通告
+ * @param {*} message 
+ * @param {*} isError 
  */
-export const lc_xqcrjl = async () => {
-    return apiJSonGet("CommunityCrjl")
+const doMessage = (message, isError = true) => {
+    window.indexVue.$message({ type: isError ? 'error' : 'success', message })
 }
 
 /**
- * [lc_xqryxx]小区人员信息
+ * 通用查表
  */
-export const lc_xqryxx = async () => {
-    return apiJSonGet("CommunityRyxx")
+export const fetchTableByApi = async (table) => {
+    return apiJSonGet(table)
 }

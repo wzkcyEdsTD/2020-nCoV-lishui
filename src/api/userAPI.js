@@ -2,7 +2,7 @@
  * user api
  */
 import axios from "axios";
-const BASEURL = "http://192.168.54.124:8080";
+const BASEURL = "http://172.28.88.251:8080/api";
 const serverInstanec = axios.create();
 serverInstanec.defaults.baseURL = BASEURL;
 

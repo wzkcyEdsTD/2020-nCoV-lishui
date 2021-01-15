@@ -66,8 +66,6 @@ export const OPTION = {
   }
 };
 /******** 2019/10/16 new config ********/
-//  区划蒙白    [0.区划线 1.外围蒙白 2.切块蒙白 3.街道标注]
-export const QHMB = `${LOCAL_HOST}/lcjjdt/qhmb/MapServer`;
 // 鹿城区疫情
 export const LCYQ = `http://172.20.89.7:6082/arcgis/rest/services/weijian/fangkong/MapServer`;
 // 乡镇街道
