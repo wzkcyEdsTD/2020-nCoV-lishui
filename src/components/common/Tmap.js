@@ -67,14 +67,22 @@ export const OPTION = {
 };
 /******** 2019/10/16 new config ********/
 // 鹿城区疫情
-export const LCYQ = `http://172.20.89.7:6082/arcgis/rest/services/weijian/fangkong/MapServer`;
+export const LCYQ = `https://172.28.88.252:6443/arcgis/rest/services/weijian/fangkong/MapServer`;
 // 乡镇街道
-export const XZJD = `http://172.20.89.7:6082/arcgis/rest/services/weijian/xzjd/MapServer`;
+export const XZJD = `https://172.28.88.252:6443/arcgis/rest/services/weijian/xzjd/MapServer`;
 /******** ********/
-export const IMAGELAYER = `${LOCAL_HOST}/Hosted/TDT_SLDT/VectorTileServer`;
+export const IMAGELAYER = "https://map.geoq.cn/arcgis/rest/services/ChinaOnlineCommunity/MapServer";
 //  天地图-大数据
 export const TDTDSJ = `${LOCAL_HOST}/Hosted/kfq_WGS84/VectorTileServer`;
-
+//  天地图浙江
+export const TDTZJ_cva = {
+  urlTemplate: "http://t0.tianditu.gov.cn/DataServer?T=cva_w&tk=2e6919cbe2122200fa172aaea99742e0&x={col}&y={row}&l={level}",
+  subDomains: ["t0", "t1", "t2", "t3", "t4", "t5", "t6", "t7"],
+}
+export const TDTZJ_vec = {
+  urlTemplate: "http://t0.tianditu.gov.cn/DataServer?T=vec_w&tk=2e6919cbe2122200fa172aaea99742e0&x={col}&y={row}&l={level}",
+  subDomains: ["t0", "t1", "t2", "t3", "t4", "t5", "t6", "t7"],
+}
 //  天地图-招商-影像图2017
 export const TDTIMAGE2017 = `${OTHER_HOST}/TDT/YX2017/MapServer`;
 //  spatialReference

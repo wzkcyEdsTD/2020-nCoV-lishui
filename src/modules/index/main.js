@@ -8,12 +8,14 @@ import "@/components/common/_iconfont/iconfont.css";
 import echarts from "echarts/lib/echarts";
 import { doAccess_fetchUser } from "@/api/userAPI"
 import ElementUI from "element-ui";
+import 'element-ui/lib/theme-chalk/index.css';
 
 Vue.use(ElementUI);
 Vue.prototype.$echarts = echarts;
 Vue.config.productionTip = false;
 Vue.prototype.$util = util;
 Vue.prototype.$window = window;
+Vue.prototype.$hub = new Vue; //  全局事件线程
 
 /**
  * 生产环境入口页面:9003上跳转内部页面:5001带token

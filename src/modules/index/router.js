@@ -5,14 +5,14 @@
 import Vue from "vue";
 import Router from "vue-router";
 // pages modules
-import Macroscopic from "@/components/macroscopic/Macroscopic.vue";
+import nCoVMap from "@/components/nCoVMap/nCoVMap.vue";
 Vue.use(Router);
 
 export default new Router({
   mode: "hash",
   routes: [{
     path: "/",
-    name: "macroscopic",
-    component: Macroscopic
+    name: "nCoVMap",
+    component: nCoVMap
   }]
 });
