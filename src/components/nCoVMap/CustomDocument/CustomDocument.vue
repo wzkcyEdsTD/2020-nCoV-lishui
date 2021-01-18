@@ -1,22 +1,11 @@
 <template>
-  <div
-    class="custom-document animated"
-    :class="[hideVisible ? 'slideOutLeft' : 'slideInLeft']"
-  >
+  <div class="custom-document animated" :class="[hideVisible ? 'slideOutLeft' : 'slideInLeft']">
     <el-tabs v-model="tabActive" class="my-tabs">
       <el-tab-pane label="疫情防控" name="fgfc" />
     </el-tabs>
     <div class="custom-document-content">
-      <el-tree
-        class="my-tree"
-        :data="tabsMenuData"
-        show-checkbox
-        default-expand-all
-        node-key="id"
-        ref="tree"
-        :render-content="renderContent"
-        @check="treeChangeCheck"
-      >
+      <el-tree class="my-tree" :data="tabsMenuData" show-checkbox default-expand-all node-key="id" ref="tree"
+        :render-content="renderContent" @check="treeChangeCheck">
       </el-tree>
     </div>
     <span class="hide_button" @click="hideVisible = !hideVisible"></span>
@@ -38,18 +27,7 @@ export default {
     ...mapState([]),
   },
   created() {
-    xmMenu.length &&
-      (this.tabsMenuData = xmMenu.map((v) => {
-        return {
-          ...v,
-          children: v.children.map((d) => {
-            return {
-              ...d,
-              label: d.label + ` ( ${~d.id.indexOf("@") ? "6" : "-"}例 )`,
-            };
-          }),
-        };
-      }));
+    xmMenu.length && (this.tabsMenuData = xmMenu);
   },
   mounted() {
     this.eventRegister();
@@ -63,11 +41,17 @@ export default {
       });
     },
     renderContent(h, { node }) {
-        return (
-          <span class="custom-tree-node">
-            <span>{node.label}</span>
-          </span>);
-      },
+      return (
+        <span class="custom-tree-node">
+          <span>{node.label}</span>
+          {node.isLeaf ? (
+            <span style="font-weight:bolder;">
+              ({~node.data.id.indexOf("@") ? "6" : "-"}例)
+            </span>
+          ) : undefined}
+        </span>
+      );
+    },
     treeChangeCheck() {
       this.$hub.$emit("document-checkbox", this.$refs.tree.getCheckedKeys());
     },
@@ -75,5 +59,5 @@ export default {
 };
 </script>
 <style scoped lang="less">
-@import url("./CustomDocument.less");
+  @import url("./CustomDocument.less");
 </style>

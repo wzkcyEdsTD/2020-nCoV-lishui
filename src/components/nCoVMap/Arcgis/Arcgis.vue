@@ -24,7 +24,7 @@ export default {
     await this.createMap();
     this.eventRegister();
     this.defaultLayers();
-    this.domUpdate();
+    // this.domUpdate();
   },
   methods: {
     domUpdate() {
@@ -77,6 +77,9 @@ export default {
             map: that.map,
             zoom: 13,
             center: [119.921786, 28.451993],
+            scale: 4508.93552506767,
+            minZoom: 4,
+            maxZoom: 20,
           });
           //  图例添加
           that.legend = new Legend({ label: "图例", view: that.view });
