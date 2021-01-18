@@ -14,14 +14,15 @@
         default-expand-all
         node-key="id"
         ref="tree"
+        :render-content="renderContent"
         @check="treeChangeCheck"
       >
       </el-tree>
     </div>
-    <span class="hide_button" @click="hideSide"></span>
+    <span class="hide_button" @click="hideVisible = !hideVisible"></span>
   </div>
 </template>
-<script>
+<script type="text/jsx">
 import { mapState, mapActions } from "vuex";
 import { xmMenu } from "@/components/nCoVMap/config/enums";
 export default {
@@ -29,7 +30,6 @@ export default {
   data() {
     return {
       tabActive: "fgfc",
-      queryValue: undefined,
       tabsMenuData: [],
       hideVisible: false,
     };
@@ -62,9 +62,12 @@ export default {
         this.treeChangeCheck();
       });
     },
-    hideSide() {
-      this.hideVisible = !this.hideVisible;
-    },
+    renderContent(h, { node }) {
+        return (
+          <span class="custom-tree-node">
+            <span>{node.label}</span>
+          </span>);
+      },
     treeChangeCheck() {
       this.$hub.$emit("document-checkbox", this.$refs.tree.getCheckedKeys());
     },

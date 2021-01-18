@@ -76,8 +76,9 @@ export default {
    * 获取昨日时间
    */
   getTime() {
-    var date = new Date(+new Date() - 1000 * 3600 * 24);
+    var date = new Date();
     var seperator1 = "-";
+    var seperator2 = ":";
     //以下代码依次是获取当前时间的年月日时分秒
     var year = date.getFullYear();
     var month = date.getMonth() + 1;
@@ -101,10 +102,18 @@ export default {
     if (second >= 0 && second <= 9) {
       second = "0" + second;
     }
-    return year +
+    var currentdate =
+      year +
       seperator1 +
       month +
       seperator1 +
-      strDate;
+      strDate +
+      " " +
+      hour +
+      seperator2 +
+      minute +
+      seperator2 +
+      second;
+    return currentdate;
   }
 };

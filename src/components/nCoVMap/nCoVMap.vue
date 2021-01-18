@@ -4,11 +4,7 @@
     <div class="Com_map">
       <commonArcgis id="macroArcgis" ref="macroArcgis" />
     </div>
-    <div class="Com_container" style="z-index: 10">
-      <div id="fy-rightChart">
-        <ChartDocument />
-      </div>
-    </div>
+    <ChartDocument ref="rightChart" />
     <CustomDocument ref="leftMenu" />
   </div>
 </template>

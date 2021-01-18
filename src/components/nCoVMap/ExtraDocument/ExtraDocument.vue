@@ -1,15 +1,18 @@
 <template>
-  <div>
-    <top />
-    <!-- <other /> -->
+  <div class="extra-document">
+    <top-count />
   </div>
 </template>
 
 <script>
-import top from "./top";
-// import other from "./other";
+import TopCount from "./TopCount";
 export default {
   name: "ExtraDocument",
-  components: { top },
+  components: { TopCount },
 };
 </script>
+
+<style scoped lang="less">
+.extra-document {
+}
+</style>

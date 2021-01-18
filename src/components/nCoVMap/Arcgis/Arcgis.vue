@@ -14,10 +14,7 @@ import { doPointLayer, removeLayer } from "./Arcgis.js";
 export default {
   name: "nCoVArcgis",
   data() {
-    return {
-      doFrame: false,
-      doTl: true,
-    };
+    return {};
   },
   props: ["id"],
   created() {
@@ -27,16 +24,18 @@ export default {
     await this.createMap();
     this.eventRegister();
     this.defaultLayers();
-  },
-  watch: {
-    dataDone(n) {
-      n && this.defaultLayers();
-    },
+    this.domUpdate();
   },
   methods: {
+    domUpdate() {
+      $(".esri-mytitle").remove();
+      $(".esri-legend").prepend(
+        '<div class="esri-legend__message esri-mytitle">图例</div>'
+      );
+    },
     /** once */
     defaultLayers() {
-      this.$hub.$emit("arcgis-map-default");
+      setTimeout(() => this.$hub.$emit("arcgis-map-default"), 500);
     },
     eventRegister() {
       this.$hub.$on("document-checkbox", (arr) => {
@@ -80,7 +79,7 @@ export default {
             center: [119.921786, 28.451993],
           });
           //  图例添加
-          that.legend = new Legend({ view: that.view, style: "classic" });
+          that.legend = new Legend({ label: "图例", view: that.view });
           that.view.ui.add(that.legend, "bottom-right");
           // //  地图叠加
           var tiledLayer = new WebTileLayer(TDTZJ_vec);

@@ -179,23 +179,24 @@ export default {
 #bltjDiv {
   width: 100%;
   height: 34%;
-
+  display: flex;
+  flex-direction: column;
   h3 {
     color: #23c9f3;
-    margin-top: 10px;
 
     select {
       background-color: #0c7cd2;
       border: none;
       color: #fff;
-      padding: 7px 7px;
-      margin-left: 5px;
+      padding-left: 10px;
+      height: 30px;
+      line-height: 30px;
     }
   }
 
   #bqtjChart {
     width: 100%;
-    height: 85%;
+    flex: 1;
   }
 }
 </style>

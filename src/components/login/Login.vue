@@ -74,7 +74,17 @@ export default {
       disabled: false,
     };
   },
+  created() {
+    this.eventRegister();
+  },
   methods: {
+    eventRegister() {
+      document.onkeydown = (e) => {
+        if (window.event.keyCode == 13) {
+          this.goLogin();
+        }
+      };
+    },
     // 登录、运维切换
     switchTab() {
       this.show = this.show == 0 ? 1 : 0;

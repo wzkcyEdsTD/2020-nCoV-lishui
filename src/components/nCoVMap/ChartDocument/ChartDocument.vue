@@ -1,6 +1,6 @@
 <template>
   <div
-    class="chartDocument animated"
+    class="chart-document animated"
     :class="[hideVisible ? 'slideOutRight' : 'slideInRight']"
   >
     <bqtj />
@@ -32,9 +32,12 @@ export default {
 };
 </script>
 <style lang="less">
-.chartDocument {
-  width: 100%;
-  height: 100%;
+.chart-document {
+  position: fixed;
+  top: 80px !important;
+  bottom: 10px !important;
+  width: 400px;
+  right: 8px;
   background: url(../img/rightDiv_bg.png) 0 0 no-repeat;
   background-size: 100% 100%;
   padding: 30px 16px 20px 26px;

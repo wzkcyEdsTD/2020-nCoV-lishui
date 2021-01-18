@@ -4,10 +4,10 @@
       <div class="app_icon">{{ titleHash[current] }}</div>
       <div class="app_toptab_position app_toptab_normal">
         <div class="tip">
-          <div>温州设计集团 <img src="@/components/common/image/group_logo.png" /></div>
-          <p>{{ time }}</p>
+          <div>温州设计集团</div>
+          <div>{{ time }}</div>
         </div>
-        <el-popover placement="bottom-end" width="70" trigger="hover">
+        <!-- <el-popover placement="bottom-end" width="70" trigger="hover">
           <ul class="user_list">
             <li>{{ au_username }}</li>
             <li>
@@ -17,7 +17,7 @@
           <div class="userBtn" slot="reference">
             <el-avatar size="small" src="libs/img/userAvatar.png"></el-avatar>
           </div>
-        </el-popover>
+        </el-popover> -->
       </div>
     </header>
     <div class="app_container">
@@ -66,8 +66,8 @@ export default {
 </script>
 
 <style lang="less">
+@import url("~@/components/common/css/arcgis.css");
 @import url("~@/components/common/css/common.less");
 @import url("~@/components/common/css/animate.css");
 @import url("~@/components/common/css/frame.less");
-@import url("~@/components/common/css/arcgis.css");
 </style>
