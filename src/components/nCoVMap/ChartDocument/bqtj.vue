@@ -9,7 +9,6 @@
         <option value="gld_list">集中医学观察点人员名单</option>
         <option value="mj">密切接触者</option>
         <option value="jjgl">居家隔离人员</option>
-        <option value="hbhw">湖北回鹿人员/信令</option>
       </select>
     </h3>
     <div id="bqtjChart"></div>
@@ -154,7 +153,6 @@ export default {
       glryDate,
       mqzDate,
       jjglDate,
-      hbhlDate,
     } = this.$window.nCov_luchengChart;
     this.dataAge = dataAge;
     this.YTdataAge = YTdataAge;
@@ -166,7 +164,6 @@ export default {
       gld_list: glryDate,
       mj: mqzDate,
       jjgl: jjglDate,
-      hbhw: hbhlDate,
     };
   },
   mounted() {

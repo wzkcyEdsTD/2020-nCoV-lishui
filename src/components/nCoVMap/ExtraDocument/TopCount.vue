@@ -54,19 +54,19 @@
       <li>
         <h3 style="color: #ff283a">
           <p>高风险地区</p>
-          {{ $window.nCov_luchengData.macroscopic.lc.qzbl }} 人
+          0 个
         </h3>
       </li>
       <li>
         <h3 style="color: #fcc659">
           <p>中风险地区</p>
-          {{ $window.nCov_luchengData.macroscopic.lc.zzbl }} 人
+          0 个
         </h3>
       </li>
       <li>
         <h3 style="color: #1eff95">
           <p>低风险地区</p>
-          {{ $window.nCov_luchengData.macroscopic.death }} 人
+          0 个
         </h3>
       </li>
     </ul>

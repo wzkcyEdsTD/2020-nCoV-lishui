@@ -1,9 +1,12 @@
 logs/
 npm-debug.log
 yarn-error.log
+#   模块
 node_modules/
+#   lock文件
 package-lock.json
 yarn.lock
+#   文件夹
 dist/
 .idea/
 run/
@@ -12,5 +15,5 @@ run/
 *.un~
 typings/
 .nyc_output/
-yarn.lock
+#   压缩包
 *.zip

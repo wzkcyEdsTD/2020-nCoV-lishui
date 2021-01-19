@@ -1,6 +1,6 @@
 <template>
   <div class="extra-document">
-    <top-count />
+    <!-- <top-count /> -->
   </div>
 </template>
 

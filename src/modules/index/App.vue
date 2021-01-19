@@ -4,7 +4,7 @@
       <div class="app_icon">{{ titleHash[current] }}</div>
       <div class="app_toptab_position app_toptab_normal">
         <div class="tip">
-          <div>温州设计集团</div>
+          <div v-show="false">中国电信丽水分公司 & 温州设计集团</div>
           <div>{{ time }}</div>
         </div>
         <!-- <el-popover placement="bottom-end" width="70" trigger="hover">

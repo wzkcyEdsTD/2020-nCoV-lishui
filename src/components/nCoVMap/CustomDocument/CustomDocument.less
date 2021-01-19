@@ -31,24 +31,6 @@
     overflow-y: auto;
 }
 
-.custom-document-content::-webkit-scrollbar {
-    /*外层轨道，可以用display:none让其不显示，也可以添加背景图片，颜色改变显示效果（位置3）*/
-    height: 4px;
-    width: 4px;
-}
-
-.custom-document-content::-webkit-scrollbar-track-piece {
-    /*内层轨道，滚动条中间部分（位置4）*/
-    background: rgba(4, 30, 117, 0.4);
-    border-radius: 2px;
-}
-
-.custom-document-content::-webkit-scrollbar-thumb {
-    /*滚动条里面可以拖动的那部分（位置5）*/
-    background: rgba(62, 158, 255, 0.8);
-    border-radius: 2px;
-}
-
 .custom-query {
     height: 60px;
     line-height: 60px;
@@ -122,17 +104,17 @@
 }
 
 .my-tree /deep/ .el-tree-node__children {
+    overflow-x: hidden;
+    overflow-y: auto;
+    max-height: 550px;
+
     .el-checkbox {
         display: unset;
     }
 
     .custom-tree-node {
-        font-size: 14px;
+        font-size: 15px;
     }
-
-    // .el-tree-node__content {
-    //     padding-left: 30px !important;
-    // }
 }
 
 .my-tree /deep/ .custom-tree-node {

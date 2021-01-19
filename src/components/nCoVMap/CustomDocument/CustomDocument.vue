@@ -1,11 +1,23 @@
 <template>
-  <div class="custom-document animated" :class="[hideVisible ? 'slideOutLeft' : 'slideInLeft']">
+  <div
+    class="custom-document animated"
+    :class="[hideVisible ? 'slideOutLeft' : 'slideInLeft']"
+  >
     <el-tabs v-model="tabActive" class="my-tabs">
-      <el-tab-pane label="疫情防控" name="fgfc" />
+      <el-tab-pane label="精密智控" name="jmzk" />
     </el-tabs>
     <div class="custom-document-content">
-      <el-tree class="my-tree" :data="tabsMenuData" show-checkbox default-expand-all node-key="id" ref="tree"
-        :render-content="renderContent" @check="treeChangeCheck">
+      <el-tree
+        class="my-tree"
+        :data="tabsMenuData"
+        show-checkbox
+        :default-expanded-keys="['inside']"
+        accordion
+        node-key="id"
+        ref="tree"
+        :render-content="renderContent"
+        @check="treeChangeCheck"
+      >
       </el-tree>
     </div>
     <span class="hide_button" @click="hideVisible = !hideVisible"></span>
@@ -18,7 +30,7 @@ export default {
   name: "custom-document",
   data() {
     return {
-      tabActive: "fgfc",
+      tabActive: "jmzk",
       tabsMenuData: [],
       hideVisible: false,
     };
@@ -46,7 +58,7 @@ export default {
           <span>{node.label}</span>
           {node.isLeaf ? (
             <span style="font-weight:bolder;">
-              ({~node.data.id.indexOf("@") ? "6" : "-"}例)
+              （{~node.data.id.indexOf("@") ? "6" : "-"}例）
             </span>
           ) : undefined}
         </span>
@@ -59,5 +71,5 @@ export default {
 };
 </script>
 <style scoped lang="less">
-  @import url("./CustomDocument.less");
+@import url("./CustomDocument.less");
 </style>

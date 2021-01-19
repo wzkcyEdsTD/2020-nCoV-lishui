@@ -13,32 +13,21 @@ const doMassFeatureLayer = async (context, { url, id }, shallTop = true) => {
   const { data } = await fetchArcgisServer({ url });
   const fieldAliases = data.fieldAliases;
   const _html_ = Object.keys(fieldAliases)
-    .filter(
-      item =>
-        !BANNED_PARAMS.includes(item) && !BANNED_PARAMS_COMPANY.includes(item)
-    )
-    .map(key => {
-      return `<div><span>${fieldAliases[key]}</span><span>{${key ||
-        ""}}</span></div>`;
-    })
+    .filter(item => !BANNED_PARAMS.includes(item) && !BANNED_PARAMS_COMPANY.includes(item))
+    .map(key => `<div><span>${fieldAliases[key]}</span><span>{${key || ""}}</span></div>`)
     .join("");
   return new Promise((resolve, reject) => {
     if (context.map.findLayerById(id)) {
-      //  存在图层,设置visible
       context.map.findLayerById(id).visible = true;
       resolve(true);
     } else {
       //  不存在图层,生成图层
-      loadModules([
-        "esri/layers/FeatureLayer",
-        "esri/layers/MapImageLayer"
-      ]).then(([FeatureLayer]) => {
+      loadModules(["esri/layers/FeatureLayer",]).then(([FeatureLayer]) => {
         //  feature
         const option = { url, id, opacity: 1, labelsVisible: false };
-        id != "xsqLayer" &&
-          (option.popupTemplate = {
-            content: `<div class="yqPopFrame">${_html_}</div>`
-          });
+        option.popupTemplate = {
+          content: `<div class="yqPopFrame">${_html_}</div>`
+        };
         const layer = new FeatureLayer(option);
         context.map.add(layer, shallTop ? 10 : 2);
         context.legend.layerInfos.push({ layer });

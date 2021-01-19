@@ -32,11 +32,9 @@ export default {
   methods: {
     filterItem(index) {
       this.tabIndex = index;
-
       // 增长趋势
       if (index == "0") {
         this.$echarts.init(document.getElementById("bqtjChart2")).clear();
-
         this.xzqs();
       }
       // 累计趋势
@@ -44,7 +42,6 @@ export default {
         this.$echarts.init(document.getElementById("bqtjChart2")).clear();
         this.ChartDataWZ = this.dataQS; //累积趋势
         this.ChartDataLC = this.dataLC; //累积趋势
-
         this.dataTime = this.dataName;
         this.qzqs();
       }
@@ -114,7 +111,7 @@ export default {
         },
         series: [
           {
-            name: "鹿城确诊人员增长趋势(例)",
+            name: "确诊人员增长趋势(例)",
             type: "line",
             smooth: true,
             //  symbol: "none", //去掉折线点
@@ -203,7 +200,7 @@ export default {
         },
         series: [
           {
-            name: "温州市确诊人员增长趋势(例)",
+            name: "市确诊人员增长趋势(例)",
             type: "line",
             smooth: true,
             //  symbol: "none", //去掉折线点
@@ -225,7 +222,7 @@ export default {
             data: this.ChartDataWZ,
           },
           {
-            name: "鹿城确诊人员增长趋势(例)",
+            name: "区确诊人员增长趋势(例)",
             type: "line",
             smooth: true,
             //  symbol: "none", //去掉折线点

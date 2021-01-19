@@ -24,7 +24,7 @@ export default {
     await this.createMap();
     this.eventRegister();
     this.defaultLayers();
-    // this.domUpdate();
+    this.domUpdate();
   },
   methods: {
     domUpdate() {
@@ -70,23 +70,26 @@ export default {
           OPTION
         ).then(([Map, MapView, Legend, WebTileLayer]) => {
           // map加载底图
-          that.map = new Map({ spatialReference });
+          that.map = new Map({
+            spatialReference,
+          });
           //设置地图容器
           that.view = new MapView({
             container: that.$props.id,
             map: that.map,
-            zoom: 13,
-            center: [119.921786, 28.451993],
-            scale: 4508.93552506767,
-            minZoom: 4,
-            maxZoom: 20,
+            zoom: 14,
+            center: [119.921786, 28.461993],
           });
+          that.view.constraints = {
+            maxZoom: 18, //最大空间等级
+            minZoom: 4, //最小空间等级
+          };
           //  图例添加
           that.legend = new Legend({ label: "图例", view: that.view });
           that.view.ui.add(that.legend, "bottom-right");
-          // //  地图叠加
-          var tiledLayer = new WebTileLayer(TDTZJ_vec);
-          var tiledLayerAnno = new WebTileLayer(TDTZJ_cva);
+          //  地图叠加
+          const tiledLayer = new WebTileLayer(TDTZJ_vec);
+          const tiledLayerAnno = new WebTileLayer(TDTZJ_cva);
           that.map.add(tiledLayer);
           that.map.add(tiledLayerAnno);
           resolve(true);

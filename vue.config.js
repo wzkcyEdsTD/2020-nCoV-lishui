@@ -10,7 +10,6 @@ module.exports = {
   assetsDir: "libs",
   devServer: {
     proxy: {
-      //配置跨域
       "/api": {
         target: "http://172.20.89.88:5001/api",
         changOrigin: true,
@@ -27,6 +26,13 @@ module.exports = {
   },
   //  打包后分析包大小
   chainWebpack: (config) => {
+    /** 环境变量 */
+    config
+      .plugin('define')
+      .tap(args => {
+        args[0].API_CONFIG = JSON.stringify(process.env.NODE_ENV)
+        return args
+      })
     /* 添加分析工具*/
     if (process.env.NODE_ENV === 'production') {
       if (process.env.npm_config_report) {
