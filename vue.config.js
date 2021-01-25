@@ -6,8 +6,9 @@ const path = require('path');
 
 module.exports = {
   //  打包静态文件访问相对路径设置
-  // publicPath: "./",
-  assetsDir: "libs",
+  publicPath: "./",
+  outputDir: "dist",
+  assetsDir: "assets",
   devServer: {
     proxy: {
       "/api": {

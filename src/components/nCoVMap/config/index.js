@@ -3,4 +3,4 @@
  * created by eds
  */
 
-export const SERVER = "http://172.28.88.252:6080/arcgis/rest/services/lsyq/";
+export const SERVER = "http://10.53.137.59:6080/arcgis/rest/services/lsyq/";

@@ -285,7 +285,7 @@ export default {
         loadModules(["esri/tasks/QueryTask", "esri/tasks/support/Query"], OPTION).then(
           async ([QueryTask, Query]) => {
             const queryTask = new QueryTask({
-              url: `https://172.28.88.252:6443/arcgis/rest/services/lucheng/fangkong/MapServer/4`,
+              url: `http://10.53.137.59:6080/arcgis/rest/services/lucheng/fangkong/MapServer/4`,
             });
             const query = new Query();
             query.outFields = ["*"];
@@ -310,7 +310,7 @@ export default {
         loadModules(["esri/tasks/QueryTask", "esri/tasks/support/Query"], OPTION).then(
           async ([QueryTask, Query]) => {
             const queryTask = new QueryTask({
-              url: `https://172.28.88.252:6443/arcgis/rest/services/lucheng/fangkong/MapServer/0`,
+              url: `http://10.53.137.59:6080/arcgis/rest/services/lucheng/fangkong/MapServer/0`,
             });
             const query = new Query();
             query.outFields = ["*"];

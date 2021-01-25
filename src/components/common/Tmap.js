@@ -24,7 +24,7 @@ console.log(`[env]${window.env}`, `[shallLogin]${window.shallLogin}`);
 
 //  生产环境配置
 const CONFIG_PROVIDE = {
-  ARCGIS_API_URL: "http://172.28.88.254/arcgis/arcgis_js_api/library/4.15/dojo/dojo.js",
+  ARCGIS_API_URL: "http://10.53.129.97/arcgis/arcgis_js_api/library/4.15/dojo/dojo.js",
   LOCAL_HOST: "http://172.20.89.59/server/rest/services",
   OTHER_HOST: "https://services.wzmap.gov.cn/server/rest/services",
   SERVER_HOST: "http://172.20.89.88:5001/s/lc",
@@ -67,9 +67,9 @@ export const OPTION = {
 };
 /******** 2019/10/16 new config ********/
 // 鹿城区疫情
-export const LCYQ = `https://172.28.88.252:6443/arcgis/rest/services/weijian/fangkong/MapServer`;
+export const LCYQ = `http://10.53.137.59:6080/arcgis/rest/services/weijian/fangkong/MapServer`;
 // 乡镇街道
-export const XZJD = `https://172.28.88.252:6443/arcgis/rest/services/weijian/xzjd/MapServer`;
+export const XZJD = `http://10.53.137.59:6080/arcgis/rest/services/weijian/xzjd/MapServer`;
 /******** ********/
 export const IMAGELAYER = "https://map.geoq.cn/arcgis/rest/services/ChinaOnlineCommunity/MapServer";
 //  天地图-大数据
