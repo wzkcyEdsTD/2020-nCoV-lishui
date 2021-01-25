@@ -1,5 +1,5 @@
 import axios from "axios";
-const BASEURL = "http://172.28.88.251:8080/api";
+const BASEURL = "http://10.53.137.235:8080/api";
 const serverInstanec = axios.create();
 serverInstanec.defaults.baseURL = BASEURL;
 /**
