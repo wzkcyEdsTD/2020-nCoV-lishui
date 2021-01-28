@@ -15,12 +15,16 @@ serverInstanec.interceptors.request.use(config => {
  * apiJSonGet common
  * @param {*} tableName 
  */
-const apiJSonGet = (tableName) => {
+const apiJSonGet = (tableName, page) => {
     const option = { url: "/commonApiJson/get", method: "post" };
     option.data = {
         "[]": {
-            [tableName]: {}
-        }
+            [tableName]: {},
+            "count": 100,
+            "page": page,
+            "query": 2
+        },
+        "total@": "/[]/total"
     };
     return serverInstanec.request(option).then(res => {
         //  status判断登录状态 
@@ -30,7 +34,7 @@ const apiJSonGet = (tableName) => {
         }
         //  code判断业务错误
         if (res.data.code == 200) {
-            return Promise.resolve(res.data["[]"]);
+            return Promise.resolve({ data: res.data["[]"], total: res.data.total });
         } else {
             doMessage(res.data.message)
             return Promise.reject(res.data.message)
@@ -50,6 +54,6 @@ const doMessage = (message, isError = true) => {
 /**
  * 通用查表
  */
-export const fetchTableByApi = async (table) => {
-    return apiJSonGet(table)
+export const fetchTableByApi = async (table, page) => {
+    return apiJSonGet(table, page)
 }

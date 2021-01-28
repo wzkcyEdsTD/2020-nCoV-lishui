@@ -58,8 +58,16 @@ export default {
           <span>{node.label}</span>
           {node.isLeaf ? (
             <span style="font-weight:bolder;">
-              （{~node.data.id.indexOf("@") ? "6" : "-"}例）
+              （{node.data.amount || "-"}例）
             </span>
+          ) : undefined}
+          {node.data.isDetail ? (
+            <button
+              class="node-detail-button"
+              onClick={() => this.showDetail(node.data)}
+            >
+              详情
+            </button>
           ) : undefined}
         </span>
       );
@@ -67,9 +75,26 @@ export default {
     treeChangeCheck() {
       this.$hub.$emit("document-checkbox", this.$refs.tree.getCheckedKeys());
     },
+
+    // 展示详情
+    showDetail(data) {
+      this.$hub.$emit("set-detail-popup", data);
+    },
   },
 };
 </script>
 <style scoped lang="less">
 @import url("./CustomDocument.less");
+</style>
+<style lang="less">
+// 详情按钮
+.node-detail-button {
+  background-color: #162449;
+  border: 1px solid #75c8f4;
+  border-radius: 4px;
+  box-sizing: border-box;
+  color: #fff;
+  padding: 1px 4px;
+  margin-left: 6px;
+}
 </style>

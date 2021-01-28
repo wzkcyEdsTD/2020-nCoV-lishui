@@ -22,7 +22,10 @@ export const BANNED_PARAMS = [
   "bz",
   "复工率颜色",
   /** 暂时隐藏 */
-  "gxsj"
+  "gxsj",
+  "tong_time",
+  "tongid",
+  "id"
 ];
 //  工业企业暂时去除
 export const BANNED_PARAMS_COMPANY = [
