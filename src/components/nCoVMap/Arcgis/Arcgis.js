@@ -11,12 +11,13 @@ import { fetchArcgisServer } from "@/api/spaceAPI";
  */
 const doMassFeatureLayer = async (context, { url, id }, shallTop = true) => {
   const { data } = await fetchArcgisServer({ url });
+  const reg = new RegExp("[\\u4E00-\\u9FFF]+", "g");
   const fieldAliases = data.fieldAliases;
   const _html_ = Object.keys(fieldAliases)
     .filter(item => !BANNED_PARAMS.includes(item) && !BANNED_PARAMS_COMPANY.includes(item))
-    .map(key => `<div><span>${fieldAliases[key]}</span><span>{${key || ""}}</span></div>`)
+    .map(key => reg.test(fieldAliases[key]) ? `<div><span>${fieldAliases[key]}</span><span>{${key || ""}}</span></div>` : ``)
     .join("");
-    console.log(_html_)
+  console.log(_html_)
   return new Promise((resolve, reject) => {
     if (context.map.findLayerById(id)) {
       context.map.findLayerById(id).visible = true;
