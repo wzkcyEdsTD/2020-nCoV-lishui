@@ -4,6 +4,7 @@ import { SERVER } from "../config/index";
 import { loadModules } from "esri-loader";
 import { BANNED_PARAMS, BANNED_PARAMS_COMPANY } from "./banned";
 import { fetchArcgisServer } from "@/api/spaceAPI";
+import { SZQH } from "@/components/common/Tmap";
 /**
  * FeatureLayer
  * @param {*} context
@@ -11,13 +12,12 @@ import { fetchArcgisServer } from "@/api/spaceAPI";
  */
 const doMassFeatureLayer = async (context, { url, id }, shallTop = true) => {
   const { data } = await fetchArcgisServer({ url });
-  const reg = new RegExp("[\\u4E00-\\u9FFF]+", "g");
+  const reg = new RegExp("[\u4e00-\u9fa5]");
   const fieldAliases = data.fieldAliases;
   const _html_ = Object.keys(fieldAliases)
     .filter(item => !BANNED_PARAMS.includes(item) && !BANNED_PARAMS_COMPANY.includes(item))
     .map(key => reg.test(fieldAliases[key]) ? `<div><span>${fieldAliases[key]}</span><span>{${key || ""}}</span></div>` : ``)
     .join("");
-  console.log(_html_)
   return new Promise((resolve, reject) => {
     if (context.map.findLayerById(id)) {
       context.map.findLayerById(id).visible = true;
@@ -111,3 +111,25 @@ export const removeLayer = (context, id) => {
     context.map.findLayerById(id).visible = false;
   }
 };
+
+/**
+ * 底图切换
+ * @param {*} context 
+ * @param {*} param1 
+ */
+export const doImage = (context, { key, id, boolean }) => {
+  loadModules(["esri/layers/MapImageLayer"]).then(([MapImageLayer]) => {
+    const layer = context.map.findLayerById(key);
+    if (layer) {
+      layer.visible = boolean
+    } else {
+      if (boolean) {
+        context.map.add(new MapImageLayer({
+          url: SZQH,
+          id: key,
+          sublayers: [{ id }],
+        }));
+      }
+    }
+  });
+}

@@ -13,33 +13,6 @@ export const BANNED_PARAMS = [
   "Shape.STLength()",
   "Shape_Length",
   "Shape_STLength__",
-  "x",
-  "y",
-  "type",
-  "dz1",
-  "zyy",
-  "wt",
-  "bz",
-  "复工率颜色",
-  /** 暂时隐藏 */
-  "gxsj",
-  "tong_time",
-  "tongid",
-  "id"
 ];
 //  工业企业暂时去除
-export const BANNED_PARAMS_COMPANY = [
-  "szcs",
-  "tyshxydm",
-  "lxr",
-  "lxdh",
-  "lxdh1",
-  "ydygs",
-  "cnfhqk",
-  "zcdzj",
-  "cnfhbl",
-  "drxdw",
-  "snyg",
-  "swyg",
-  "hbjyg"
-];
+export const BANNED_PARAMS_COMPANY = [];

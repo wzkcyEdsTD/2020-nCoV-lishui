@@ -1,16 +1,20 @@
 <template>
   <div class="extra-document">
-    <!-- <top-count /> -->
+    <BottomBtn v-if="mapDone" />
     <DetailPopup />
   </div>
 </template>
 
 <script>
-import TopCount from "./TopCount";
+import { mapState } from "vuex";
+import BottomBtn from "./bottomBtn";
 import DetailPopup from "./DetailPopup";
 export default {
   name: "ExtraDocument",
-  components: { TopCount, DetailPopup },
+  components: { BottomBtn, DetailPopup },
+  computed: {
+    ...mapState(["mapDone"]),
+  },
 };
 </script>
 

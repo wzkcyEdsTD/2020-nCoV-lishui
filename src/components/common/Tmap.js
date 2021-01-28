@@ -72,6 +72,8 @@ export const LCYQ = `http://10.53.137.59:6080/arcgis/rest/services/weijian/fangk
 export const XZJD = `http://10.53.137.59:6080/arcgis/rest/services/weijian/xzjd/MapServer`;
 /******** ********/
 export const IMAGELAYER = "https://map.geoq.cn/arcgis/rest/services/ChinaOnlineCommunity/MapServer";
+//  行政区划
+export const SZQH = "http://10.53.137.59:6080/arcgis/rest/services/lsyq/d_region/MapServer"
 //  天地图-大数据
 export const TDTDSJ = `${LOCAL_HOST}/Hosted/kfq_WGS84/VectorTileServer`;
 //  天地图浙江

@@ -8,8 +8,8 @@
 /* eslint-disable */
 import { loadModules } from "esri-loader";
 import { OPTION, spatialReference, TDTZJ_cva, TDTZJ_vec } from "@/components/common/Tmap";
-import { mapState } from "vuex";
-import { doPointLayer, removeLayer } from "./Arcgis.js";
+import { mapMutations } from "vuex";
+import { doPointLayer, removeLayer, doImage } from "./Arcgis.js";
 
 export default {
   name: "nCoVArcgis",
@@ -25,8 +25,10 @@ export default {
     this.eventRegister();
     this.defaultLayers();
     this.domUpdate();
+    this.updateMapState(true);
   },
   methods: {
+    ...mapMutations(["updateMapState"]),
     domUpdate() {
       $(".esri-mytitle").remove();
       $(".esri-legend").prepend(
@@ -48,9 +50,12 @@ export default {
           window.featureMap[v] = false;
         });
       });
+      //  底图切换
+      this.$hub.$on("arcgis-map-image-change", (obj) => doImage(this, obj));
       //  图例收缩
       this.$hub.$on("hide_click", (val) => {
         document.querySelector(".esri-ui-bottom-right").style.right = val ? 0 : "410px";
+        document.getElementById("btnDiv").style.right = val ? "200px" : "600px";
       });
     },
     /**
@@ -66,9 +71,10 @@ export default {
             "esri/views/MapView",
             "esri/widgets/Legend",
             "esri/layers/WebTileLayer", //  TileLayer
+            "esri/layers/MapImageLayer",
           ],
           OPTION
-        ).then(([Map, MapView, Legend, WebTileLayer]) => {
+        ).then(([Map, MapView, Legend, WebTileLayer, MapImageLayer]) => {
           // map加载底图
           that.map = new Map({
             spatialReference,

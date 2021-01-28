@@ -7,6 +7,8 @@ import {
 } from "@/api/tableAPI";
 export default new Vuex.Store({
   state: {
+    //  地图加载完成
+    mapDone: false,
     // 出入记录
     crjlList: [],
     // 人员信息
@@ -65,6 +67,9 @@ export default new Vuex.Store({
 
   },
   mutations: {
+    updateMapState(state, val) {
+      state.mapDone = val;
+    },
     updatecrjlList(state, val) {
       state.crjlList = val;
     },
