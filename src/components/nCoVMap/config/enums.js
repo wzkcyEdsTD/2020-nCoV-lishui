@@ -2,7 +2,7 @@ export const xmMenu = [{
   id: 'inside', label: '境内人员管控',
   children: [
     { id: 'inside-qz', label: '确诊病例' },
-    { id: 'close_contact@0', label: '密切接触者', amount: 6 },
+    { id: 'close_contact@0', label: '密切接触者' },
     { id: 'inside-fr', label: '无症状感染者' },
     { id: 'inside-jx', label: '疑似病例' },
     { id: 'inside-wzz', label: '发热门诊患者' },
