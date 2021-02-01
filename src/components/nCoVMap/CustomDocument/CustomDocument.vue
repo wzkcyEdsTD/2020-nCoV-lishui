@@ -61,7 +61,7 @@ export default {
               （{node.data.amount || "-"}例）
             </span>
           ) : undefined}
-          {node.data.isDetail ? (
+          {node.data.table ? (
             <button
               class="node-detail-button"
               onClick={() => this.showDetail(node.data)}

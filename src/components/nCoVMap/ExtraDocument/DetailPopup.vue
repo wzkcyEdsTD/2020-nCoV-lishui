@@ -37,8 +37,7 @@
 </template>
 
 <script>
-import { mapState, mapActions } from "vuex";
-import { DETAIL_PARAMS } from "./hash";
+import { fetchTableByApi } from "@/api/tableAPI";
 export default {
   data() {
     return {
@@ -62,66 +61,26 @@ export default {
     };
   },
 
-  computed: {
-    ...mapState([
-      "goodsInsurancePurchaseList",
-      "goodsInsurancePurchaseTotal",
-      "insideLlGnList",
-      "insideLlGnTotal",
-      "insideGlJjList",
-      "insideGlJjTotal",
-      "outsideBackList",
-      "outsideBackTotal",
-      "insideLlRyList",
-      "insideLlRyTotal",
-      "barrierList",
-      "barrierTotal",
-      "supermarketList",
-      "supermarketTotal",
-      "farmerMarketList",
-      "farmerMarketTotal",
-      "stationList",
-      "stationTotal",
-      "schoolList",
-      "schoolTotal"
-    ]),
-  },
-
   mounted() {
     this.eventRegister();
   },
 
   methods: {
-    ...mapActions([
-      "fetchGoodsInsurancePurchaseList",
-      "fetchInsideLlGnList",
-      "fetchInsideGlJjList",
-      "fetchOutsideBackList",
-      "fetchInsideLlRyList",
-      "fetchBarrierList",
-      "fetchSupermarketList",
-      "fetchFarmerMarketList",
-      "fetchStationList",
-      "fetchSchoolList"
-    ]),
-
     eventRegister() {
       this.$hub.$off("set-detail-popup");
-      this.$hub.$on("set-detail-popup", async (res) => {
-        if (!(res.id in DETAIL_PARAMS)) return;
-
-        this.title = res.label;
-        const { fetchList, list, total, fields } = DETAIL_PARAMS[res.id];
-        this.currenData = { fetchList, list, fields };
+      this.$hub.$on("set-detail-popup", async ({ label, table }) => {
+        this.title = label;
+        const { tableName, fields } = table;
+        this.currenData = table;
         this.currenPage = 0;
 
-        if (!this[list].length) {
-          await this[fetchList]();
-        }
+        const arr = await fetchTableByApi(tableName);
+        const total = arr.total || 0;
+        this.total = Math.ceil(total / 10);
 
-        this.total = Math.ceil(this[total] / 10);
+        const data = arr.data ? arr.data.map((v) => v[tableName]) : [];
 
-        this.fixData(this[list], fields);
+        this.fixData(data, fields);
         this.fixColumn(fields);
 
         this.popupShow = true;
@@ -155,9 +114,10 @@ export default {
 
     // 切换页
     async handleCurrentChange(val) {
-      const { fetchList, list, fields } = this.currenData;
-      await this[fetchList](val - 1);
-      this.fixData(this[list], fields);
+      const { tableName, fields } = this.currenData;
+      const arr = await fetchTableByApi(tableName, val - 1);
+      const data = arr.data ? arr.data.map((v) => v[tableName]) : [];
+      this.fixData(data, fields);
 
       // 返回顶端
       document.querySelector(".el-table__body-wrapper").scrollTop = 0;
