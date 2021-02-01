@@ -22,6 +22,7 @@ export default {
   },
   async mounted() {
     await this.createMap();
+    this.mapEventRegister();
     this.eventRegister();
     this.defaultLayers();
     this.domUpdate();
@@ -99,6 +100,27 @@ export default {
           that.map.add(tiledLayer);
           that.map.add(tiledLayerAnno);
           resolve(true);
+        });
+      });
+    },
+    mapEventRegister() {
+      this.view.when(() => {
+        this.view.popup.watch("selectedFeature", (graphic) => {
+          if (graphic) {
+            const graphicTemplate = graphic.getEffectivePopupTemplate();
+            graphicTemplate.actions.items[0].visible = graphic.attributes.video_url;
+          }
+        });
+      });
+      this.view.when(() => {
+        const popup = this.view.popup;
+        popup.viewModel.on("trigger-action", (event) => {
+          if (event.action.id === "feature-video-overview") {
+            this.$hub.$emit(
+              "arcgis-popup-video",
+              popup.viewModel.selectedFeature.attributes
+            );
+          }
         });
       });
     },

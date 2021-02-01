@@ -66,7 +66,7 @@ export default {
 </script>
 
 <style lang="less">
-@import url("~@/components/common/css/arcgis.css");
+// @import url("~@/components/common/css/arcgis.css");
 @import url("~@/components/common/css/common.less");
 @import url("~@/components/common/css/animate.css");
 @import url("~@/components/common/css/frame.less");

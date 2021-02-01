@@ -16,8 +16,9 @@ const doMassFeatureLayer = async (context, { url, id }, shallTop = true) => {
   const fieldAliases = data.fieldAliases;
   const _html_ = Object.keys(fieldAliases)
     .filter(item => !BANNED_PARAMS.includes(item) && !BANNED_PARAMS_COMPANY.includes(item))
-    .map(key => reg.test(fieldAliases[key]) ? `<div><span>${fieldAliases[key]}</span><span>{${key || ""}}</span></div>` : ``)
-    .join("");
+    .map(key => reg.test(fieldAliases[key]) ? `<div><span>${fieldAliases[key]}</span><span>{${key || ""}}</span></div>` : ``
+    ).join('')
+  // 
   return new Promise((resolve, reject) => {
     if (context.map.findLayerById(id)) {
       context.map.findLayerById(id).visible = true;
@@ -26,9 +27,16 @@ const doMassFeatureLayer = async (context, { url, id }, shallTop = true) => {
       //  不存在图层,生成图层
       loadModules(["esri/layers/FeatureLayer",]).then(([FeatureLayer]) => {
         //  feature
-        const option = { url, id, opacity: 1, labelsVisible: false };
+        const option = { url, id, opacity: 1, outFields: ["*"], };
         option.popupTemplate = {
-          content: `<div class="yqPopFrame">${_html_}</div>`
+          actions: [
+            {
+              id: "feature-video-overview",
+              image: "/libs/img/video.png",
+              title: "查看监控"
+            }
+          ],
+          content: `<div class="yqPopFrame"><div>${_html_}</div></div>`,
         };
         const layer = new FeatureLayer(option);
         context.map.add(layer, shallTop ? 10 : 2);

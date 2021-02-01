@@ -209,8 +209,16 @@ body {
 }
 
 .esri-ui {
+  *:focus {
+    outline: none
+  }
+
   .esri-widget {
     background-color: unset;
+  }
+
+  .esri-popup--shadow {
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0)
   }
 
   //  图例框宽度
@@ -312,6 +320,7 @@ body {
       overflow: hidden;
       background-repeat: repeat;
       color: #2AFFFA;
+      position: relative;
       background-image: url("../image/yqpop.png");
 
       .bottomBtn {
@@ -331,49 +340,55 @@ body {
         cursor: pointer;
       }
 
-      .yqPopFrame::-webkit-scrollbar {
-        border: 1px solid rgba(109, 225, 255, 1);
-        width: 6px;
-      }
-
-      .yqPopFrame::-webkit-scrollbar-thumb {
-        background: rgba(109, 225, 255, 1);
-        border-radius: 3px;
-      }
-
       .yqPopFrame {
-        margin-bottom: 16px;
         height: 260px;
-        overflow-y: auto;
+        overflow: hidden;
+        padding-bottom: 30px;
+        color: #2AFFFA;
 
         >div {
-          width: 100%;
-          border-bottom: 1px rgba(42, 255, 250, 0.7) solid;
-          box-sizing: border-box;
-          padding: 0 10px;
-
-          >span {
-            display: inline-block;
-            vertical-align: text-top;
-            line-height: 26px;
-            text-align: left;
-            font-size: 16px;
+          height: 100%;
+          overflow-y: auto;
+          &::-webkit-scrollbar {
+            border: 1px solid rgba(109, 225, 255, 1);
+            width: 6px;
           }
 
-          >span:first-child {
-            width: 35%;
-            font-weight: 700;
-            ;
+          &::-webkit-scrollbar-thumb {
+            background: rgba(109, 225, 255, 1);
+            border-radius: 3px;
           }
 
-          >span:last-child {
-            width: 64.9%;
+          >div {
+            width: 100%;
+            border-bottom: 1px rgba(42, 255, 250, 0.7) solid;
+            box-sizing: border-box;
+            padding: 0 10px;
+
+            >span {
+              display: inline-block;
+              vertical-align: text-top;
+              line-height: 26px;
+              text-align: left;
+              font-size: 16px;
+            }
+
+            >span:first-child {
+              width: 35%;
+              font-weight: 700;
+              ;
+            }
+
+            >span:last-child {
+              width: 64.9%;
+            }
+          }
+
+          >div:last-child {
+            border-bottom: 0px;
           }
         }
 
-        >div:last-child {
-          border-bottom: 0px;
-        }
       }
     }
 
@@ -391,7 +406,16 @@ body {
     }
 
     .esri-popup__footer {
-      display: none;
+      height: 50px;
+      line-height: 50px;
+      position: absolute;
+      bottom: 10px;
+      width: 100%;
+      font-size: 18px;
+
+      .esri-popup__action-text {
+        font-size: 14px;
+      }
     }
 
     .esri-popup__button--dock {
