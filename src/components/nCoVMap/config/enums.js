@@ -5,7 +5,7 @@ export const xmMenu = [{
     { id: 'close_contact@0', label: '密切接触者' },
     { id: 'inside-fr', label: '无症状感染者' },
     { id: 'inside-jx', label: '疑似病例' },
-    { id: 'inside-wzz', label: '发热门诊患者' },
+    { id: 'theme_data@6', label: '发热门诊患者' },
     { id: 'inside-hs-point', label: '急性呼吸道感染者' },
     { id: 'inside-back', label: '国内高风险地区来丽返丽人员' },
     { id: 'theme_data@3', label: '卡口信息', amount: 1,
@@ -57,7 +57,7 @@ export const xmMenu = [{
         ]
       }
     },
-    { id: 'inside-ll-jw', label: '公共文化场所' },
+    { id: 'theme_data@8', label: '公共文化场所' },
     { id: 'inside-ll-gn', label: '福利院和养老院',
       table: {
         tableName: "SzlsDwSjjhMzjFlyhylyxx",
@@ -167,14 +167,14 @@ export const xmMenu = [{
     { id: 'ability-fy-ill', label: '居家隔离人员数据' },
     { id: 'ability-fy-subway', label: '负压救护车' }, //  关联火车票
     { id: 'ability-fy-bus', label: '新冠检测专用CT信息' }, //  关联汽车票
-    { id: 'ability-fy-mall', label: '新冠定点医院信息' },
+    { id: 'theme_data@7', label: '新冠定点医院信息' },
     { id: 'ability-fy-nm', label: '发热门诊信息' },
     { id: 'ability-fy-zj', label: '方舱' },
-    { id: 'ability-fy-wh', label: '核酸检测点' },
+    { id: 'theme_data@9', label: '核酸检测点' },
     { id: 'ability-wz', label: '核酸检测信息' },
     { id: 'ability-wz-resource', label: '新冠疫苗接种地点' },
     { id: 'ability-fc', label: '新冠疫苗接种数据' },
-    { id: 'ability-fy-car', label: '医疗物资仓库' },
+    { id: 'theme_data@5', label: '医疗物资仓库' },
     { id: 'ability-fr-mz', label: '医疗物资库存' },
   ]
 }]

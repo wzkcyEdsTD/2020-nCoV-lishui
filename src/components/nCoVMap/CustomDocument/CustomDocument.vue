@@ -54,10 +54,10 @@ export default {
     },
     renderContent(h, { node }) {
       return (
-        <span class="custom-tree-node">
-          <span>{node.label}</span>
+        <span class="custom-tree-node" class={['label-node',node.isLeaf?'':'label-no-root',node.key.includes('@')?'isMapServerSupported':'']}>
+          <span >{node.label}</span>
           {node.isLeaf ? (
-            <span style="font-weight:bolder;">
+            <span>
               （{node.data.amount || "-"}例）
             </span>
           ) : undefined}
@@ -87,14 +87,29 @@ export default {
 @import url("./CustomDocument.less");
 </style>
 <style lang="less">
-// 详情按钮
-.node-detail-button {
-  background-color: #162449;
-  border: 1px solid #75c8f4;
-  border-radius: 4px;
-  box-sizing: border-box;
-  color: #fff;
-  padding: 1px 4px;
-  margin-left: 6px;
+.custom-document {
+  // 详情按钮
+  .node-detail-button {
+    background-color: #162449;
+    border: 1px solid #75c8f4;
+    border-radius: 4px;
+    box-sizing: border-box;
+    color: #fff;
+    padding: 1px 4px;
+    margin-left: 6px;
+    cursor: pointer;
+  }
+  .label-node {
+    color: #ccc;
+    font-weight: 300;
+    font-size: 15px;
+  }
+  .label-no-root {
+    color: white;
+  }
+  .isMapServerSupported {
+    color: white;
+    font-weight: bold;
+  }
 }
 </style>
