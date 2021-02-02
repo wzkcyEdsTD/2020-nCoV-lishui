@@ -9,7 +9,7 @@
 import { loadModules } from "esri-loader";
 import { OPTION, spatialReference, TDTZJ_cva, TDTZJ_vec } from "@/components/common/Tmap";
 import { mapMutations } from "vuex";
-import { doPointLayer, removeLayer, doImage } from "./Arcgis.js";
+import { doPointLayer, removeLayer, doImage, fetchFeatureByXhr } from "./Arcgis.js";
 
 export default {
   name: "nCoVArcgis",
@@ -41,6 +41,7 @@ export default {
       setTimeout(() => this.$hub.$emit("arcgis-map-default"), 500);
     },
     eventRegister() {
+      //  菜单点击
       this.$hub.$on("document-checkbox", (arr) => {
         arr.map((v) => {
           doPointLayer(this, v);
@@ -57,6 +58,10 @@ export default {
       this.$hub.$on("hide_click", (val) => {
         document.querySelector(".esri-ui-bottom-right").style.right = val ? 0 : "410px";
         document.getElementById("btnDiv").style.right = val ? "200px" : "600px";
+      });
+      //  表格点击定位
+      this.$hub.$on("set-detail-location", ({ config, row }) => {
+        fetchFeatureByXhr(this, config, row);
       });
     },
     /**
@@ -108,7 +113,8 @@ export default {
         this.view.popup.watch("selectedFeature", (graphic) => {
           if (graphic) {
             const graphicTemplate = graphic.getEffectivePopupTemplate();
-            graphicTemplate.actions.items[0].visible = graphic.attributes.video_url;
+            if (graphicTemplate.actions)
+              graphicTemplate.actions.items[0].visible = graphic.attributes.video_url;
           }
         });
       });

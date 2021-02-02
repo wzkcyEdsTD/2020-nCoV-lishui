@@ -48,18 +48,23 @@ export default {
     ...mapActions([]),
     eventRegister() {
       this.$hub.$on("arcgis-map-default", () => {
-        this.$refs.tree.setCheckedKeys(["close_contact@0"]);
+        this.$refs.tree.setCheckedKeys(["theme_data@6"]);
         this.treeChangeCheck();
       });
     },
     renderContent(h, { node }) {
       return (
-        <span class="custom-tree-node" class={['label-node',node.isLeaf?'':'label-no-root',node.key.includes('@')?'isMapServerSupported':'']}>
-          <span >{node.label}</span>
+        <span
+          class="custom-tree-node"
+          class={[
+            "label-node",
+            node.isLeaf ? "" : "label-no-root",
+            node.key.includes("@") ? "isMapServerSupported" : "",
+          ]}
+        >
+          <span>{node.label}</span>
           {node.isLeaf ? (
-            <span>
-              （{node.data.amount || "-"}例）
-            </span>
+            <span>（{node.data.amount || "-"}{node.data.unit || '例'}）</span>
           ) : undefined}
           {node.data.table ? (
             <button
@@ -78,7 +83,7 @@ export default {
 
     // 展示详情
     showDetail(data) {
-      this.$hub.$emit("set-detail-popup", data);
+      this.$hub.$emit("set-detail-table", data);
     },
   },
 };
@@ -106,6 +111,8 @@ export default {
   }
   .label-no-root {
     color: white;
+    font-weight: bold;
+    font-size: 16px;
   }
   .isMapServerSupported {
     color: white;

@@ -15,14 +15,15 @@ export async function updateDataStores(sql) {
  * 获取空间信息
  * @param {*} param0 
  */
-export async function fetchArcgisServer({ where = "1=1", url }) {
+export async function fetchArcgisServer({ where = "1=1", url, resultRecordCount }) {
     return await instance.get(`${url}/query`, {
         params: {
             f: "json",
             outFields: "*",
             spatialRel: "esriSpatialRelIntersects",
             where,
-            relationParameter: (+new Date()).toString()
+            relationParameter: (+new Date()).toString(),
+            ...resultRecordCount ? { resultRecordCount } : {}
         }
     });
 }

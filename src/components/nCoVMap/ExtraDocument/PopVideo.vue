@@ -66,7 +66,7 @@ export default {
   flex-direction: column;
   > p {
     color: white;
-    line-height: 50px;
+    line-height: 30px;
   }
   .frequency-pic {
     flex: 1;

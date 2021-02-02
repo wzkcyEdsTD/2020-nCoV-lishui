@@ -8,7 +8,7 @@ module.exports = {
   //  打包静态文件访问相对路径设置
   publicPath: "./",
   outputDir: "dist",
-  assetsDir: "assets",
+  assetsDir: "libs",
   devServer: {
     proxy: {
       "/api": {

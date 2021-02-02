@@ -5,20 +5,19 @@ import { loadModules } from "esri-loader";
 import { BANNED_PARAMS, BANNED_PARAMS_COMPANY } from "./banned";
 import { fetchArcgisServer } from "@/api/spaceAPI";
 import { SZQH } from "@/components/common/Tmap";
+const reg = new RegExp("[\u4e00-\u9fa5]");
 /**
  * FeatureLayer
  * @param {*} context
  * @param {*} item
  */
 const doMassFeatureLayer = async (context, { url, id }, shallTop = true) => {
-  const { data } = await fetchArcgisServer({ url });
-  const reg = new RegExp("[\u4e00-\u9fa5]");
+  const { data } = await fetchArcgisServer({ url, resultRecordCount: 0 });
   const fieldAliases = data.fieldAliases;
   const _html_ = Object.keys(fieldAliases)
     .filter(item => !BANNED_PARAMS.includes(item) && !BANNED_PARAMS_COMPANY.includes(item))
     .map(key => reg.test(fieldAliases[key]) ? `<div><span>${fieldAliases[key]}</span><span>{${key || ""}}</span></div>` : ``
     ).join('')
-  // 
   return new Promise((resolve, reject) => {
     if (context.map.findLayerById(id)) {
       context.map.findLayerById(id).visible = true;
@@ -26,7 +25,6 @@ const doMassFeatureLayer = async (context, { url, id }, shallTop = true) => {
     } else {
       //  不存在图层,生成图层
       loadModules(["esri/layers/FeatureLayer",]).then(([FeatureLayer]) => {
-        //  feature
         const option = { url, id, opacity: 1, outFields: ["*"], };
         option.popupTemplate = {
           actions: [
@@ -82,30 +80,72 @@ export const doXSQLayer = context => {
 };
 
 /**
+ * 通过数据xhr查询服务
+ * @param {*} context 上下文
+ * @param {*} config 服务配置（fields字段）
+ * @param {*} row   列表数据
+ */
+export const fetchFeatureByXhr = async (context, { id, table, label }, row) => {
+  const primaryKeyConfig = table.fields.filter(v => v.includes('@*'))[0]
+  if (primaryKeyConfig) {
+    const [layer, level] = id.split('@');
+    const [primaryKey] = primaryKeyConfig.split('@');
+    const url = `${SERVER}/${layer}/MapServer/${level}`
+    const where = `${primaryKey} = '${row[primaryKey]}'`;
+    const { data } = await fetchArcgisServer({ url, where });
+    if (data.features.length) {
+      data.features.length && doArcgisPopup(context, data.features[0], data.fieldAliases)
+    } else {
+      context.$message({ type: "error", message: `[${label}] 地图服务未查找到该记录` });
+    }
+  } else {
+    context.$message({ type: "error", message: `[${label}] 未指定查询主键` });
+  }
+}
+
+/**
  * 手动弹框
- * @param {*} view
+ * @param {*} 
+ * 
  * @param {*} obj
  * @param {*} fieldAliases 枚举
  */
 export const doArcgisPopup = (
-  { view, $util },
-  { attributes, type, geometry },
+  context,
+  { attributes, geometry },
   fieldAliases
 ) => {
   const _html_ = Object.keys(fieldAliases)
-    .filter(
-      item =>
-        !BANNED_PARAMS.includes(item) && !BANNED_PARAMS_COMPANY.includes(item)
-    )
-    .map(key => {
-      return `<div><span>${fieldAliases[key]}</span><span>${attributes[key] ||
-        ""}</span></div>`;
-    })
-    .join("");
-  view.popup.open({
-    content: `<div class="yqPopFrame">${_html_}</div>`,
-    location:
-      type == "point" ? geometry : $util.getPolygonCenter(geometry.rings)
+    .filter(item => !BANNED_PARAMS.includes(item) && !BANNED_PARAMS_COMPANY.includes(item))
+    .map(key => reg.test(fieldAliases[key]) ? `<div><span>${fieldAliases[key]}</span><span>${attributes[key]}</span></div>` : ``
+    ).join('')
+  loadModules(["esri/Graphic", "esri/PopupTemplate"]).then(([Graphic, PopupTemplate]) => {
+    const popGraphic = new Graphic({
+      geometry: {
+        type: "point",
+        longitude: geometry.x,
+        latitude: geometry.y
+      },
+      attributes
+    });
+    popGraphic.popupTemplate = new PopupTemplate({
+      content: `<div class="yqPopFrame"><div>${_html_}</div></div>`,
+      ...(attributes.video_url ? {
+        actions: [
+          {
+            id: "feature-video-overview",
+            image: "/libs/img/video.png",
+            title: "查看监控"
+          }
+        ]
+      } : {})
+    });
+    context.view.popup.clear();
+    context.view.popup.open({
+      features: [popGraphic],
+    });
+    context.view.goTo({ center: [geometry.x, geometry.y] });
+    context.$hub.$emit("set-detail-fold", true)
   });
 };
 
