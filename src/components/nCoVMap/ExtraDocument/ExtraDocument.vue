@@ -1,6 +1,6 @@
 <template>
   <div class="extra-document">
-    <BottomBtn v-if="mapDone" />
+    <!-- <BottomBtn v-if="mapDone" /> -->
     <DetailTable />
     <PopVideo v-if="popVideo" :videoData="popVideo" />
   </div>
@@ -8,7 +8,7 @@
 
 <script>
 import { mapState } from "vuex";
-import BottomBtn from "./BottomBtn";
+// import BottomBtn from "./BottomBtn";
 import DetailTable from "./DetailTable";
 import PopVideo from "./PopVideo";
 export default {
@@ -16,7 +16,7 @@ export default {
   data() {
     return { popVideo: undefined };
   },
-  components: { BottomBtn, DetailTable, PopVideo },
+  components: { DetailTable, PopVideo },
   computed: {
     ...mapState(["mapDone"]),
   },

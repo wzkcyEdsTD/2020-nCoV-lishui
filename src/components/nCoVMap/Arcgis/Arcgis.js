@@ -4,7 +4,7 @@ import { SERVER } from "../config/index";
 import { loadModules } from "esri-loader";
 import { BANNED_PARAMS, BANNED_PARAMS_COMPANY } from "./banned";
 import { fetchArcgisServer } from "@/api/spaceAPI";
-import { SZQH } from "@/components/common/Tmap";
+import { SZQH, SZQH_ALL } from "@/components/common/Tmap";
 const reg = new RegExp("[\u4e00-\u9fa5]");
 /**
  * FeatureLayer
@@ -179,5 +179,17 @@ export const doImage = (context, { key, id, boolean }) => {
         }));
       }
     }
+  });
+}
+
+/**
+ * 行政区划全部
+ * @param {*} context 
+ */
+export const doImageAll = (context) => {
+  loadModules(["esri/layers/MapImageLayer"]).then(([MapImageLayer]) => {
+    const mapLayer = new MapImageLayer({ url: SZQH_ALL, })
+    context.map.add(mapLayer);
+    context.legend.layerInfos.push({ layer: mapLayer });
   });
 }

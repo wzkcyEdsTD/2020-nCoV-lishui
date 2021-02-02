@@ -9,7 +9,13 @@
 import { loadModules } from "esri-loader";
 import { OPTION, spatialReference, TDTZJ_cva, TDTZJ_vec } from "@/components/common/Tmap";
 import { mapMutations } from "vuex";
-import { doPointLayer, removeLayer, doImage, fetchFeatureByXhr } from "./Arcgis.js";
+import {
+  doPointLayer,
+  removeLayer,
+  doImage,
+  doImageAll,
+  fetchFeatureByXhr,
+} from "./Arcgis.js";
 
 export default {
   name: "nCoVArcgis",
@@ -38,7 +44,10 @@ export default {
     },
     /** once */
     defaultLayers() {
-      setTimeout(() => this.$hub.$emit("arcgis-map-default"), 500);
+      setTimeout(() => {
+        this.$hub.$emit("arcgis-map-default");
+        doImageAll(this);
+      }, 500);
     },
     eventRegister() {
       //  菜单点击
@@ -76,11 +85,10 @@ export default {
             "esri/Map",
             "esri/views/MapView",
             "esri/widgets/Legend",
-            "esri/layers/WebTileLayer", //  TileLayer
-            "esri/layers/MapImageLayer",
+            "esri/layers/WebTileLayer",
           ],
           OPTION
-        ).then(([Map, MapView, Legend, WebTileLayer, MapImageLayer]) => {
+        ).then(([Map, MapView, Legend, WebTileLayer]) => {
           // map加载底图
           that.map = new Map({
             spatialReference,
@@ -92,18 +100,15 @@ export default {
             zoom: 14,
             center: [119.921786, 28.461993],
           });
-          that.view.constraints = {
-            maxZoom: 18, //最大空间等级
-            minZoom: 4, //最小空间等级
-          };
-          //  图例添加
-          that.legend = new Legend({ label: "图例", view: that.view });
-          that.view.ui.add(that.legend, "bottom-right");
+          that.view.constraints = { maxZoom: 18, minZoom: 4 };
           //  地图叠加
           const tiledLayer = new WebTileLayer(TDTZJ_vec);
           const tiledLayerAnno = new WebTileLayer(TDTZJ_cva);
           that.map.add(tiledLayer);
           that.map.add(tiledLayerAnno);
+          //  图例添加
+          that.legend = new Legend({ label: "图例", view: that.view });
+          that.view.ui.add(that.legend, "bottom-right");
           resolve(true);
         });
       });

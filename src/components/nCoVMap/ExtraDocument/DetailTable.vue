@@ -3,7 +3,7 @@
     <div class="popup-wrapper" />
     <div class="popup-modal">
       <header>
-        <span class="popup-title">[ {{ title }} ] - 详情列表</span>
+        <span class="popup-title">{{ title }}</span>
         <a class="popup-close" @click="clearTable">×</a>
         <a class="popup-fold" @click="isFold = !isFold" />
       </header>
@@ -44,15 +44,10 @@ export default {
     return {
       isFold: false,
       title: "",
-      // 列名
       columnList: [],
-      // 表格数据
       tableData: [],
-      // 当前页
       currenPage: 0,
-      // 总页数
       total: 0,
-      // 当前数据参数
       config: {},
     };
   },
@@ -73,6 +68,7 @@ export default {
         this.total = Math.ceil((arr.total || 0) / 10);
         this.fixColumn(fields);
         this.fixData(arr.data ? arr.data.map((v) => v[tableName]) : [], fields);
+        this.isFold = false;
       });
       //  收起表格
       this.$hub.$off("set-detail-fold");
