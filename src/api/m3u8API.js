@@ -1,7 +1,7 @@
 import axios from "axios";
 const serverInstanec = axios.create();
-// const BASEURL = "http://10.53.129.97/m3u8";
-// serverInstanec.defaults.baseURL = BASEURL;
+const BASEURL = "http://10.53.129.97/m3u8";
+serverInstanec.defaults.baseURL = BASEURL;
 
 /**
  * axios default

@@ -21,7 +21,9 @@ export default {
     this.video && this.video.dispose();
   },
   async mounted() {
-    const URL = await fetchVideoURL(this.videoData.video_url);
+    const URL = await fetchVideoURL(
+      this.videoData.video_url.replace("http://183.131.138.61:9080", "")
+    );
     await this.initRtmp(URL);
   },
   methods: {
