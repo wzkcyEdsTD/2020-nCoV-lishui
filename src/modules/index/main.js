@@ -3,7 +3,6 @@ import App from "./App.vue";
 import util from "@/components/common/util.js";
 import router from "./router";
 import store from "@/store";
-// import "./components/common/_iconfont/iconfont.js";
 import "@/components/common/_iconfont/iconfont.css";
 import echarts from "echarts/lib/echarts";
 import { doAccess_fetchUser } from "@/api/userAPI"

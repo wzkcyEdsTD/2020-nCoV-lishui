@@ -6,6 +6,7 @@
   </div>
 </template>
 <script>
+import { fetchVideoURL } from "@/api/m3u8API";
 export default {
   data() {
     return {
@@ -20,15 +21,16 @@ export default {
     this.video && this.video.dispose();
   },
   async mounted() {
-    await this.initRtmp();
+    const URL = await fetchVideoURL(this.videoData.video_url);
+    await this.initRtmp(URL);
   },
   methods: {
-    initRtmp() {
+    initRtmp(source) {
       return new Promise((resolve) => {
         this.video = new window.Aliplayer(
           {
             id: this.id,
-            source: this.videoData.video_url,
+            source,
             width: "100%",
             height: "100%",
             autoplay: true,

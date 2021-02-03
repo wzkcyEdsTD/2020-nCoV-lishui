@@ -67,7 +67,7 @@ export default {
         const arr = await fetchTableByApi(tableName);
         this.total = Math.ceil((arr.total || 0) / 10);
         this.fixColumn(fields);
-        this.fixData(arr.data ? arr.data.map((v) => v[tableName]) : [], fields);
+        this.fixData(arr.data ? arr.data.map((v) => v[tableName]) : []);
         this.isFold = false;
       });
       //  收起表格
@@ -92,15 +92,8 @@ export default {
      * @param {array} data 返回数据
      * @param {array} fields 别名域
      */
-    fixData(data = [], fields) {
-      this.tableData = data.map((item) => {
-        const obj = {};
-        fields.map((field) => {
-          const [prop] = field.split("@");
-          obj[prop] = item[prop];
-        });
-        return obj;
-      });
+    fixData(data = []) {
+      this.tableData = data;
     },
     /**
      * 列名处理
@@ -117,10 +110,10 @@ export default {
      * @param {number} val 页数
      */
     async handleCurrentChange(val) {
-      const { tableName, fields } = this.config.table;
+      const { tableName } = this.config.table;
       const arr = await fetchTableByApi(tableName, val - 1);
       const data = arr.data ? arr.data.map((v) => v[tableName]) : [];
-      this.fixData(data, fields);
+      this.fixData(data);
       document.querySelector(".el-table__body-wrapper").scrollTop = 0;
     },
     //  清除当前配置信息
