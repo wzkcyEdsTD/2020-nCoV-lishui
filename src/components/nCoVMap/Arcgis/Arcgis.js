@@ -86,10 +86,9 @@ export const doXSQLayer = context => {
  * @param {*} row   列表数据
  */
 export const fetchFeatureByXhr = async (context, { id, table, label }, row) => {
-  const primaryKeyConfig = table.fields.filter(v => v.includes('@*'))[0]
-  if (primaryKeyConfig) {
+  if (table.primaryKey) {
     const [layer, level] = id.split('@');
-    const [primaryKey] = primaryKeyConfig.split('@');
+    const primaryKey = table.primaryKey;
     const url = `${SERVER}/${layer}/MapServer/${level}`
     const where = `${primaryKey} = '${row[primaryKey]}'`;
     const { data } = await fetchArcgisServer({ url, where });
