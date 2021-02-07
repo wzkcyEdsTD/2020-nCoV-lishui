@@ -67,7 +67,7 @@ export default {
         const arr = await fetchTableByApi(tableName);
         this.total = Math.ceil((arr.total || 0) / 10);
         this.fixColumn(fields);
-        this.fixData(arr.data ? arr.data.map((v) => v[tableName]) : []);
+        this.fixData(arr.data ? arr.data.map((v) => v[tableName]) : [], config.foreignKey || false);
         this.isFold = false;
       });
       //  收起表格
@@ -92,8 +92,12 @@ export default {
      * @param {array} data 返回数据
      * @param {array} fields 别名域
      */
-    fixData(data = []) {
-      this.tableData = data;
+    fixData(data = [], foreignKey) {
+      if (foreignKey == false) {
+        this.tableData = data;
+      } else {   
+        this.tableData = data.filter(item => item.glbm == foreignKey);
+      }      
     },
     /**
      * 列名处理

@@ -131,6 +131,26 @@ export default {
               "arcgis-popup-video",
               popup.viewModel.selectedFeature.attributes
             );
+          } else if(event.action.id === "feature-detail") {
+            this.$hub.$emit("set-detail-table", {
+              id: 'ability-fr-mz',
+              label: '医疗物资库存',
+              amount: 5,
+              unit: '个',
+              table: {
+                tableName: "SzlaDwSjjhWjwYlwzkxx",
+                fields: [
+                  "wzmc@物资名称",
+                  "wzglyxm@物资管理员姓名",
+                  "wzglylxfs@物资管理员联系方式",
+                  "glbm@管理部门",
+                  "ckdz@仓库地址",
+                  "tjsj@统计时间"
+                ],
+                primaryKey: "tongid",            
+              },
+              foreignKey: popup.viewModel.selectedFeature.attributes.glbm
+            });
           }
         });
       });

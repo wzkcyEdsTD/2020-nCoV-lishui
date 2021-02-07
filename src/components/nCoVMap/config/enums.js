@@ -273,6 +273,28 @@ export const xmMenu = [{
       }
     },
     {
+      id: 'inside-ll-gn3',
+      label: '丽水高铁站疫情防控移交人员',
+      amount: 53,
+      unit: '人',
+      table: {
+        tableName: "SzlsDwSjjhGtbGtzyqfkyjryxx",
+        fields: [
+          "rq@日期",
+          "cc@车次",
+          "dz@到站",
+          "cfd@出发地",
+          "xm@姓名",
+          "zjhh@证件号码",
+          "lxdh@联系电话",
+          "jkm@健康码",
+          "sfwgwllry@是否为国外来丽人员",
+          "czjg@处置结果"
+        ],
+        primaryKey: "tongid"
+      }
+    },
+    {
       id: 'theme_data@10',
       label: '汽车站',
       amount: 2,
@@ -596,7 +618,7 @@ export const xmMenu = [{
       }
     },
     {
-      id: 'ability-fy-zj',
+      id: 'theme_data@12',
       label: '方舱',
       amount: 1,
       unit: '个',

@@ -27,13 +27,21 @@ const doMassFeatureLayer = async (context, { url, id }, shallTop = true) => {
       loadModules(["esri/layers/FeatureLayer",]).then(([FeatureLayer]) => {
         const option = { url, id, opacity: 1, outFields: ["*"], };
         option.popupTemplate = {
-          actions: [
-            {
+          actions: id == "theme_data@5"
+            ? [{
               id: "feature-video-overview",
               image: "/libs/img/video.png",
               title: "查看监控"
-            }
-          ],
+              }, {
+                id: "feature-detail",
+                image: "/libs/img/video.png",
+                title: "查看详情"
+              }]
+            : [{
+              id: "feature-video-overview",
+              image: "/libs/img/video.png",
+              title: "查看监控"
+            }],
           content: `<div class="yqPopFrame"><div>${_html_}</div></div>`,
         };
         const layer = new FeatureLayer(option);
@@ -93,7 +101,7 @@ export const fetchFeatureByXhr = async (context, { id, table, label }, row) => {
     const where = `${primaryKey} = '${row[primaryKey]}'`;
     const { data } = await fetchArcgisServer({ url, where });
     if (data.features.length) {
-      data.features.length && doArcgisPopup(context, data.features[0], data.fieldAliases)
+      data.features.length && doArcgisPopup(context, data.features[0], data.fieldAliases, id)
     } else {
       context.$message({ type: "error", message: `[${label}] 地图服务未查找到该记录` });
     }
@@ -112,7 +120,8 @@ export const fetchFeatureByXhr = async (context, { id, table, label }, row) => {
 export const doArcgisPopup = (
   context,
   { attributes, geometry },
-  fieldAliases
+  fieldAliases,
+  id
 ) => {
   const _html_ = Object.keys(fieldAliases)
     .filter(item => !BANNED_PARAMS.includes(item) && !BANNED_PARAMS_COMPANY.includes(item))
@@ -136,8 +145,19 @@ export const doArcgisPopup = (
             image: "/libs/img/video.png",
             title: "查看监控"
           }
-        ]
-      } : {})
+        ]} 
+      : id == "theme_data@5" ? {
+        actions: [
+          {
+            id: "feature-video-overview",
+            image: "/libs/img/video.png",
+            title: "查看监控"
+          }, {
+            id: "feature-detail",
+            image: "/libs/img/video.png",
+            title: "查看详情"
+          }
+        ]} : {})
     });
     context.view.popup.clear();
     context.view.popup.open({
