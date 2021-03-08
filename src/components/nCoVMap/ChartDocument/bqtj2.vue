@@ -294,6 +294,7 @@ export default {
   }
 
   #bqtjChart2 {
+      padding-left: 20px;
     width: 100%;
     height: 85%;
   }

@@ -192,6 +192,7 @@ export default {
   }
 
   #bqtjChart {
+    padding-left: 20px;
     width: 100%;
     flex: 1;
   }

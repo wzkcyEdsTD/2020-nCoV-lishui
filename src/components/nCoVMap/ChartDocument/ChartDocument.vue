@@ -3,6 +3,9 @@
     class="chart-document animated"
     :class="[hideVisible ? 'slideOutRight' : 'slideInRight']"
   >
+    <yesterdayData/>
+    <hsjcfb/>
+    <rjry/>
     <bqtj />
     <bqtj2 />
     <!-- <sbdata /> -->
@@ -14,14 +17,18 @@
 /* eslint-disable */
 import bqtj from "./bqtj";
 import bqtj2 from "./bqtj2";
+import hsjcfb from "./hsjcfb"
+import yesterdayData from "./yesterdayData"
 import sbdata from "./sbDate";
+import rjry from "./rjry"
+import Rjry from './rjry.vue';
 export default {
   data() {
     return {
       hideVisible: false,
     };
   },
-  components: { bqtj, bqtj2, sbdata },
+  components: { bqtj, bqtj2, sbdata, yesterdayData, hsjcfb, rjry},
   methods: {
     tabsPaneClickHandler(val) {},
     hideSide() {
@@ -42,6 +49,8 @@ export default {
   background-size: 100% 100%;
   padding: 30px 16px 20px 26px;
   box-sizing: border-box;
+  overflow-y: auto;
+  overflow-x: hidden;
   .hide_button {
     transform: rotateY(180deg);
     position: absolute;

@@ -4,10 +4,13 @@ import util from "@/components/common/util.js";
 import router from "./router";
 import store from "@/store";
 import "@/components/common/_iconfont/iconfont.css";
-import echarts from "echarts/lib/echarts";
+import echarts from "echarts";
 import { doAccess_fetchUser } from "@/api/userAPI"
 import ElementUI from "element-ui";
 import 'element-ui/lib/theme-chalk/index.css';
+
+import "@/font/YouSheBiaoTiHei.css";
+import "@/font/PingFang.css";
 
 Vue.use(ElementUI);
 Vue.prototype.$echarts = echarts;
