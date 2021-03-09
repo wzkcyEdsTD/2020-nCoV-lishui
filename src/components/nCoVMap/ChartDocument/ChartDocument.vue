@@ -21,7 +21,6 @@ import hsjcfb from "./hsjcfb"
 import yesterdayData from "./yesterdayData"
 import sbdata from "./sbDate";
 import rjry from "./rjry"
-import Rjry from './rjry.vue';
 export default {
   data() {
     return {

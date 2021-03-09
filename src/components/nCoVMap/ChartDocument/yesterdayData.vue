@@ -43,6 +43,7 @@ export default {
             res.zrgyljgmzjzrs.forEach(item=>{
                 that.jzNum = that.jzNum + item["昨日门诊就诊人数"]
             })
+            that.$hub.$emit("allData", res);
         })
       })
     },

@@ -15,13 +15,22 @@
 <script>
 export default {
   data() {
-    return {};
+    return {
+      res:null,
+    };
   },
   methods: {
     // 核酸检测分布
     rjry() {
       const that = this;
       const chart = this.$echarts.init(document.getElementById("rjryCharts"));
+      let list = that.res.gxzrjwbcyryzsParent;
+      const ylist = {};
+      list.forEach(element => {
+        var nameTemp = element['区县'];
+        ylist[nameTemp]=element['各区县入境物品从业人员数']
+      });
+      // console.log("入境物品",ylist);
       const option = {
         grid: {
           top: "3%",
@@ -67,6 +76,7 @@ export default {
             "青田县",
             "莲都区",
             "龙泉市",
+            "经开区",
           ],
           axisLabel: {
             show: true,
@@ -113,14 +123,13 @@ export default {
               },
             },
             barWidth: 20, //柱图宽度
-            data: [320, 302, 301, 334, 390, 330, 320, 320, 320],
+            data: [ylist['景宁县'], ylist['庆元县'], ylist['云和县'], ylist['松阳县'], ylist['遂昌县'], ylist['缙云县'], ylist['青田县'], ylist['莲都区'], ylist['龙泉市'],ylist['经开区']],
           },
         ],
       };
       chart.setOption(option);
       chart.on('click', function(params) {
           let name = params.name ;
-          console.log(name);
           chart.setOption({
             grid: {
               top: "3%",
@@ -166,6 +175,7 @@ export default {
                 "青田县",
                 "莲都区",
                 "龙泉市",
+                "经开区",
               ],
               axisLabel: {
                 show: true,
@@ -227,7 +237,7 @@ export default {
                 // barGap:'80%',
                 // barCategoryGap:'50%',
                 barWidth: 20, //柱图宽度
-                data: [320, 302, 301, 334, 390, 330, 320, 320, 320],
+                data: [ylist['景宁县'], ylist['庆元县'], ylist['云和县'], ylist['松阳县'], ylist['遂昌县'], ylist['缙云县'], ylist['青田县'], ylist['莲都区'], ylist['龙泉市'],ylist['经开区']],
               },
             ],
           });
@@ -240,8 +250,18 @@ export default {
   created() {},
   mounted() {
     const that = this;
-    that.rjry();
+    that.$hub.$on("allData", res=>{
+      that.$nextTick(()=>{
+        that.res = res;
+        that.rjry();
+      })
+    });
+
   },
+  beforeDestroy(){
+    const that = this;
+    that.$hub.$off("allData")
+  }
 };
 </script>
 
