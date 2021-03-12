@@ -27,6 +27,7 @@ export default {
           left: "15%",
           //   right: '4%',
           bottom: "20%",
+          height:"70%"
         },
         xAxis: {
           type: "value",
@@ -66,6 +67,7 @@ export default {
             "青田县",
             "莲都区",
             "龙泉市",
+            "经开区",
           ],
           axisLabel: {
             show: true,
@@ -146,20 +148,20 @@ export default {
             // barGap:'80%',
             // barCategoryGap:'50%',
             barWidth: 25, //柱图宽度
-            data: [320, 302, 301, 334, 390, 330, 320, 320, 320],
+            data: [320, 302, 301, 334, 390, 330, 320, 320, 320, 330],
           },
         ],
       });
 
       chart.on('click', function(params) {
           let name = params.name ;
-          console.log(name);
           chart.setOption({
             grid: {
               top: "0%",
               left: "15%",
               //   right: '4%',
               bottom: "20%",
+              height:"70%"
             },
             xAxis: {
               type: "value",
@@ -249,11 +251,15 @@ export default {
                     color:"#fff"
                   },
                   fontFamily:"PingFang",
-                  fontSize:14
+                  fontSize:14,
+                  // backgroundColor:{
+                  //   image:"http://localhost:8080/libs/img/rightDiv_bg.a80d9d2a.png"
+                  //   }
                 },
+                rich:{},
                 itemStyle: {
                   normal:{
-                    color: function(params){
+                    color: (function(params){
                       if(params.name==name){
                        return  new that.$echarts.graphic.LinearGradient(
                           1,0,0,0,
@@ -271,8 +277,7 @@ export default {
                           ]
                         )
                       }
-      
-                    } 
+                    }),
                   },
                   // color: "#00B7FC",
                 },
@@ -292,6 +297,7 @@ export default {
   created() {},
   mounted() {
     const that = this;
+    that.$echarts.init(document.getElementById("hsjcCharts")).clear();
     that.hsjcfb();
   },
 };
@@ -300,7 +306,7 @@ export default {
 <style lang="less" scoped>
 .hsjcfbData {
   width: 100%;
-  height: 35%;
+  height: 27vh;
   padding-left: 20px;
   .titleLine {
     .title {
@@ -310,6 +316,7 @@ export default {
       color: #ffffff;
       width: 100%;
       height: 3vh;
+      text-shadow: 0px 3px 6px #000000;
     }
     .lineImg {
       background-image: url("~@/components/nCoVMap/img/lineImg.png");

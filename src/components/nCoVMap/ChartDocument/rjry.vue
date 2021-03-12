@@ -30,13 +30,14 @@ export default {
         var nameTemp = element['区县'];
         ylist[nameTemp]=element['各区县入境物品从业人员数']
       });
-      // console.log("入境物品",ylist);
+      console.log("入境物品",ylist);
       const option = {
         grid: {
           top: "3%",
           left: "15%",
           //   right: '4%',
           bottom: "30%",
+          height:"60%"
         },
         yAxis: {
           type: "value",
@@ -136,6 +137,7 @@ export default {
               left: "15%",
               //   right: '4%',
               bottom: "30%",
+              height:"60%"
             },
             yAxis: {
               type: "value",
@@ -253,6 +255,7 @@ export default {
     that.$hub.$on("allData", res=>{
       that.$nextTick(()=>{
         that.res = res;
+        that.$echarts.init(document.getElementById("rjryCharts")).clear();
         that.rjry();
       })
     });
@@ -268,7 +271,7 @@ export default {
 <style lang="less" scoped>
 .rjryData {
   width: 100%;
-  height: 37%;
+  height: 30vh;
   padding-left: 20px;
   .titleLine {
     .title {
@@ -278,6 +281,7 @@ export default {
       color: #ffffff;
       width: 100%;
       height: 3vh;
+      text-shadow: 0px 3px 6px #000000;
     }
     .lineImg {
       background-image: url("~@/components/nCoVMap/img/lineImg.png");

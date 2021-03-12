@@ -270,7 +270,7 @@ export default {
 <style lang="less" scoped>
 #bltjDiv2 {
   width: 100%;
-  height: 30%;
+  height: 28vh;
 
   header {
     height: 55px;
@@ -285,18 +285,20 @@ export default {
 
     span {
       padding: 0px 10px;
+      
     }
 
     .active {
       font-weight: 700;
       color: #fff;
+      text-shadow: 0px 3px 6px #000000;
     }
   }
 
   #bqtjChart2 {
       padding-left: 20px;
     width: 100%;
-    height: 85%;
+    height: 25vh;
   }
 }
 </style>

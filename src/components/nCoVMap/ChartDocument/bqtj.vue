@@ -55,6 +55,7 @@ export default {
           left: "8%",
           right: "5%",
           top: "14%",
+          height:"60%"
         },
         tooltip: {
           trigger: "axis",
@@ -175,7 +176,7 @@ export default {
 <style lang="less" scoped>
 #bltjDiv {
   width: 100%;
-  height: 34%;
+  height: 27vh;
   display: flex;
   flex-direction: column;
   h3 {
@@ -194,6 +195,7 @@ export default {
   #bqtjChart {
     padding-left: 20px;
     width: 100%;
+    height: 25vh;
     flex: 1;
   }
 }

@@ -3,11 +3,14 @@
     class="chart-document animated"
     :class="[hideVisible ? 'slideOutRight' : 'slideInRight']"
   >
+  <div class="rightMenu">
     <yesterdayData/>
     <hsjcfb/>
     <rjry/>
     <bqtj />
     <bqtj2 />
+  </div>
+
     <!-- <sbdata /> -->
     <span class="hide_button" @click="hideSide"></span>
   </div>
@@ -43,18 +46,26 @@ export default {
   top: 80px !important;
   bottom: 10px !important;
   width: 400px;
+
   right: 8px;
   background: url(../img/rightDiv_bg.png) 0 0 no-repeat;
   background-size: 100% 100%;
-  padding: 30px 16px 20px 26px;
+
   box-sizing: border-box;
-  overflow-y: auto;
-  overflow-x: hidden;
+
+  .rightMenu{
+    height: 95%;
+    padding: 30px 16px 20px 26px;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
   .hide_button {
     transform: rotateY(180deg);
     position: absolute;
     top: 40%;
+    // bottom: 60%;
     right: 98%;
+    // left: 0%;
     height: 126px;
     width: 27px;
     background: url("../img/hide_button.png") no-repeat;

@@ -58,7 +58,7 @@ export default {
 <style lang="less" scoped>
 .yesterdayData {
   width: 100%;
-  height: 29%;
+  height: 23vh;
   padding-left: 20px;
   .titleLine {
     .title {
@@ -68,6 +68,7 @@ export default {
       color: #ffffff;
       width: 100%;
       height: 3vh;
+      text-shadow: 0px 3px 6px #000000;
     }
     .lineImg {
       background-image: url("~@/components/nCoVMap/img/lineImg.png");

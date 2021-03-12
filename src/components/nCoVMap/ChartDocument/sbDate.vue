@@ -342,7 +342,7 @@ export default {
 <style lang="less" scoped>
 #sbDateDiv {
   width: 100%;
-  height: 32%;
+  height: 32vh;
   position: relative;
 
   input::-webkit-input-placeholder {
