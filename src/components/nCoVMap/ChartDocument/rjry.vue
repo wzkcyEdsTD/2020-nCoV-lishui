@@ -34,10 +34,10 @@ export default {
       const option = {
         grid: {
           top: "3%",
-          left: "15%",
+          left: "10%",
           //   right: '4%',
           bottom: "30%",
-          height:"60%"
+          height:"70%"
         },
         yAxis: {
           type: "value",
@@ -67,17 +67,18 @@ export default {
         },
         xAxis: {
           type: "category",
+
           data: [
-            "景宁县",
-            "庆元县",
-            "云和县",
-            "松阳县",
-            "遂昌县",
-            "缙云县",
-            "青田县",
             "莲都区",
-            "龙泉市",
             "经开区",
+            "龙泉市",
+            "青田县",
+            "缙云县",
+            "遂昌县",
+            "松阳县",
+            "云和县",
+            "庆元县",
+            "景宁县",
           ],
           axisLabel: {
             show: true,
@@ -124,7 +125,8 @@ export default {
               },
             },
             barWidth: 20, //柱图宽度
-            data: [ylist['景宁县'], ylist['庆元县'], ylist['云和县'], ylist['松阳县'], ylist['遂昌县'], ylist['缙云县'], ylist['青田县'], ylist['莲都区'], ylist['龙泉市'],ylist['经开区']],
+            //莲都区.经开区.龙泉市.青田县.缙云县.遂昌县.松阳县.云和县.庆元县.景宁县
+            data: [ylist['莲都区'], ylist['经开区'], ylist['龙泉市'], ylist['青田县'], ylist['缙云县'], ylist['遂昌县'], ylist['松阳县'], ylist['云和县'], ylist['庆元县'],ylist['景宁县']],
           },
         ],
       };
@@ -134,10 +136,10 @@ export default {
           chart.setOption({
             grid: {
               top: "3%",
-              left: "15%",
+              left: "10%",
               //   right: '4%',
               bottom: "30%",
-              height:"60%"
+              height:"70%"
             },
             yAxis: {
               type: "value",
@@ -168,16 +170,16 @@ export default {
             xAxis: {
               type: "category",
               data: [
-                "景宁县",
-                "庆元县",
-                "云和县",
-                "松阳县",
-                "遂昌县",
-                "缙云县",
-                "青田县",
                 "莲都区",
-                "龙泉市",
                 "经开区",
+                "龙泉市",
+                "青田县",
+                "缙云县",
+                "遂昌县",
+                "松阳县",
+                "云和县",
+                "庆元县",
+                "景宁县",
               ],
               axisLabel: {
                 show: true,
@@ -239,7 +241,7 @@ export default {
                 // barGap:'80%',
                 // barCategoryGap:'50%',
                 barWidth: 20, //柱图宽度
-                data: [ylist['景宁县'], ylist['庆元县'], ylist['云和县'], ylist['松阳县'], ylist['遂昌县'], ylist['缙云县'], ylist['青田县'], ylist['莲都区'], ylist['龙泉市'],ylist['经开区']],
+                data: [ylist['莲都区'], ylist['经开区'], ylist['龙泉市'], ylist['青田县'], ylist['缙云县'], ylist['遂昌县'], ylist['松阳县'], ylist['云和县'], ylist['庆元县'],ylist['景宁县']],
               },
             ],
           });

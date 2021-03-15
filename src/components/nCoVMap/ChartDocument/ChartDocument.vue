@@ -7,8 +7,8 @@
     <yesterdayData/>
     <hsjcfb/>
     <rjry/>
-    <bqtj />
-    <bqtj2 />
+    <!-- <bqtj />
+    <bqtj2 /> -->
   </div>
 
     <!-- <sbdata /> -->
