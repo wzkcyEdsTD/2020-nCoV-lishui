@@ -151,6 +151,28 @@ export default {
               },
               foreignKey: popup.viewModel.selectedFeature.attributes.glbm
             });
+          } else if(event.action.id === "feature-yjmd-detail"){
+            this.$hub.$emit("set-detail-table", {
+              id:"yjrymd",
+              label: '移交人员名单',
+              table: {
+                tableName: "SzlsDwSjjhGtbGtzyqfkyjryxx",
+                fields: [
+                  "cc@车次",
+                  "rq@日期",
+                  "dz@到站",
+                  "cfd@出发地",
+                  "xm@姓名",
+                  "zjhh@证件号码",
+                  "lxdh@联系电话",
+                  "jkm@健康码",
+                  "sfwgwllry@是否为国外来丽人员",
+                  "czjg@处置结果",
+                ],
+                primaryKey: "tongid",  
+              },
+              foreignKey:""
+            });
           }
         });
       });

@@ -136,6 +136,7 @@ export const doArcgisPopup = (
       },
       attributes
     });
+    console.log("id",id);
     popGraphic.popupTemplate = new PopupTemplate({
       content: `<div class="yqPopFrame"><div>${_html_}</div></div>`,
       ...(attributes.video_url ? {
@@ -156,6 +157,18 @@ export const doArcgisPopup = (
             id: "feature-detail",
             image: "/libs/img/video.png",
             title: "查看详情"
+          }
+        ]} 
+      :id == "theme_data@1" ? {
+        actions: [
+          {
+            id: "feature-yjmd-overview",
+            image: "/libs/img/video.png",
+            title: "移交名单"
+          }, {
+            id: "feature-yjmd-detail",
+            image: "/libs/img/video.png",
+            title: "移交名单"
           }
         ]} : {})
     });

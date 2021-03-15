@@ -65,6 +65,7 @@ export default {
         this.title = label;
         this.config = config;
         const arr = await fetchTableByApi(tableName);
+        // debugger
         this.total = Math.ceil((arr.total || 0) / 10);
         this.fixColumn(fields);
         this.fixData(arr.data ? arr.data.map((v) => v[tableName]) : [], config.foreignKey || false);
