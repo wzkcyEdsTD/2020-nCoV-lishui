@@ -71,7 +71,7 @@ export default {
               class="node-detail-button"
               onClick={() => this.showDetail(node.data)}
             >
-              详情
+            {"详情"}
             </button>
           ) : undefined}
         </span>
@@ -95,14 +95,15 @@ export default {
 .custom-document {
   // 详情按钮
   .node-detail-button {
-    background-color: #162449;
-    border: 1px solid #75c8f4;
+    border: 0px solid #75c8f4;
     border-radius: 4px;
-    box-sizing: border-box;
-    color: #fff;
+    color: #22569C;
+    background: linear-gradient( #52FEB3,#1DF5E8);
+    outline: none;
     padding: 1px 4px;
     margin-left: 6px;
     cursor: pointer;
+    box-shadow: 0 2px 10px rgba(14, 53, 106, 0.4);
   }
   .label-node {
     color: #ccc;

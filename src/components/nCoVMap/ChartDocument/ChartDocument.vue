@@ -48,7 +48,7 @@ export default {
   width: 400px;
 
   right: 8px;
-  background: url(../img/rightDiv_bg.png) 0 0 no-repeat;
+  background: url(../img/右侧框.png) 0 0 no-repeat;
   background-size: 100% 100%;
 
   box-sizing: border-box;

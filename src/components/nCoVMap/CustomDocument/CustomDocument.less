@@ -100,9 +100,36 @@
     color: #fff !important;
     font-weight: 500;
     font-family: PingFangSC-Medium, PingFang SC;
-    background: rgba(0, 108, 217, 0.6)
+    background-image: url('~@/components/nCoVMap/CustomDocument/img/正常状态.png');
+    background-size: 100% 100%;
+}
+.my-tree /deep/ .el-tree-node__children .el-tree-node .el-tree-node__content{
+    background: transparent;
+    line-height: 2vh;
+    height: 3.5vh;
 }
 
+.my-tree /deep/ .el-tree-node__children .el-tree-node:focus>.el-tree-node__content{
+    background: transparent;
+}
+
+.my-tree /deep/ .el-tree-node__children .el-tree-node:hover>.el-tree-node__content{
+    background: rgba(0, 178, 250, 0.5);
+}
+
+.my-tree /deep/ .el-tree-node .is-focusable{
+    padding-bottom:0vh;
+
+}
+/deep/ .el-tree{
+    background: transparent;
+}
+/deep/ .el-tree-node__content{
+    &:hover{
+        background: url('~@/components/nCoVMap/CustomDocument/img/正常状态.png');
+        background-size: 100% 100%;
+    }
+}
 .my-tree /deep/ .el-checkbox {
     display: none;
 }
@@ -126,11 +153,14 @@
 }
 
 .my-tree /deep/ .el-tree-node:focus>.el-tree-node__content {
-    background: rgba(0, 64, 129, 0.6)
+    // background: rgba(0, 64, 129, 0.6)
+    background: url('~@/components/nCoVMap/CustomDocument/img/选中.png');
+    background-size: 100% 100%;
 }
 
 .my-tree /deep/ .is-focusable {
-    background: rgba(0, 64, 129, 0.6)
+    background: transparent;
+    padding-bottom: 1vh;
 }
 
 .el-checkbox__input.is-checked .el-checkbox__inner,
