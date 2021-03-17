@@ -108,12 +108,12 @@ export default {
   .label-node {
     color: #ccc;
     font-weight: 300;
-    font-size: 15px;
+    font-size: 16px;
   }
   .label-no-root {
     color: white;
     font-weight: bold;
-    font-size: 16px;
+    font-size: 18px;
   }
   .isMapServerSupported {
     color: white;

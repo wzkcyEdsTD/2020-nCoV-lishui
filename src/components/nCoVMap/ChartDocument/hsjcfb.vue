@@ -1,7 +1,7 @@
 <template>
   <div class="hsjcfbData">
     <div class="titleLine">
-      <div class="title">核酸检测点</div>
+      <div class="title">核酸检测点分布情况</div>
       <div class="lineImg" />
     </div>
     <div class="data">
@@ -201,149 +201,149 @@ export default {
         ],
       });
 
-      chart.on("click", function (params) {
-        let name = params.name;
-        chart.setOption({
-          grid: {
-            top: "0%",
-            left: "15%",
-            //   right: '4%',
-            bottom: "20%",
-            height: "83%",
-          },
-          xAxis: {
-            type: "value",
-            max: 600,
-            axisLabel: {
-              show: true,
-              textStyle: {
-                color: "#fff",
-              },
-              fontFamily: "youshebiaotihei",
-              fontSize: 14,
-            },
-            axisLine: {
-              lineStyle: {
-                color: "#9fdbfd",
-                width: 2,
-              },
-            },
-            axisTick: {
-              //刻度线
-              show: false,
-            },
-            splitLine: {
-              //网格线
-              show: false,
-            },
-          },
-          yAxis: {
-            type: "category",
-            data: [
-              "景宁县",
-              "庆元县",
-              "云和县",
-              "松阳县",
-              "遂昌县",
-              "缙云县",
-              "青田县",
-              "龙泉市",
-              "经开区",
-              "莲都区",
-            ],
-            axisLabel: {
-              show: true,
-              textStyle: {
-                color: "#fff",
-              },
-              fontFamily: "PingFang",
-              fontSize: 14,
-            },
-            axisLine: {
-              lineStyle: {
-                color: "#9fdbfd",
-                width: 2,
-              },
-            },
-            axisTick: {
-              //刻度线
-              show: false,
-            },
-          },
-          dataZoom: [
-            {
-              type: "inside",
-              show: true,
-              yAxisIndex: 0,
-              // start: 0,
-              // end: 20,
-              width: "3%",
-              height: "80%",
-              left: "0%",
-              borderColor: "#fff",
-              fillerColor: "#fff",
-              textStyle: false,
-              zoomOnMouseWheel: false, //滚轮是否触发缩放
-              moveOnMouseMove: true, //鼠标滚轮触发滚动
-              moveOnMouseWheel: true,
-            },
-          ],
-          series: [
-            {
-              name: "hsjcfb",
-              type: "bar",
-              stack: "total",
-              label: {
-                show: true,
-                position: "right",
-                textStyle: {
-                  color: "#fff",
-                },
-                fontFamily: "PingFang",
-                fontSize: 14,
-                // backgroundColor:{
-                //   image:"http://localhost:8080/libs/img/rightDiv_bg.a80d9d2a.png"
-                //   }
-              },
-              rich: {},
-              itemStyle: {
-                normal: {
-                  color: function (params) {
-                    if (params.name == name) {
-                      return new that.$echarts.graphic.LinearGradient(
-                        1,
-                        0,
-                        0,
-                        0,
-                        [
-                          { offset: 0, color: "#FF8C4C" },
-                          { offset: 1, color: "#FEDB76" },
-                        ]
-                      );
-                    } else {
-                      return new that.$echarts.graphic.LinearGradient(
-                        1,
-                        0,
-                        0,
-                        0,
-                        [
-                          { offset: 1, color: "#16DCE9" },
-                          { offset: 0, color: "#00B7FC" },
-                        ]
-                      );
-                    }
-                  },
-                },
-                // color: "#00B7FC",
-              },
-              // barGap:'80%',
-              // barCategoryGap:'50%',
-              barWidth: 25, //柱图宽度
-              data: [that.hsfb['景宁县'], that.hsfb['庆元县'], that.hsfb['云和县'], that.hsfb['松阳县'], that.hsfb['遂昌县'], that.hsfb['缙云县'], that.hsfb['青田县'], that.hsfb['龙泉市'], that.hsfb['经开区'], that.hsfb['莲都区']],
-            },
-          ],
-        });
-      });
+      // chart.on("click", function (params) {
+      //   let name = params.name;
+      //   chart.setOption({
+      //     grid: {
+      //       top: "0%",
+      //       left: "15%",
+      //       //   right: '4%',
+      //       bottom: "20%",
+      //       height: "83%",
+      //     },
+      //     xAxis: {
+      //       type: "value",
+      //       max: 600,
+      //       axisLabel: {
+      //         show: true,
+      //         textStyle: {
+      //           color: "#fff",
+      //         },
+      //         fontFamily: "youshebiaotihei",
+      //         fontSize: 14,
+      //       },
+      //       axisLine: {
+      //         lineStyle: {
+      //           color: "#9fdbfd",
+      //           width: 2,
+      //         },
+      //       },
+      //       axisTick: {
+      //         //刻度线
+      //         show: false,
+      //       },
+      //       splitLine: {
+      //         //网格线
+      //         show: false,
+      //       },
+      //     },
+      //     yAxis: {
+      //       type: "category",
+      //       data: [
+      //         "景宁县",
+      //         "庆元县",
+      //         "云和县",
+      //         "松阳县",
+      //         "遂昌县",
+      //         "缙云县",
+      //         "青田县",
+      //         "龙泉市",
+      //         "经开区",
+      //         "莲都区",
+      //       ],
+      //       axisLabel: {
+      //         show: true,
+      //         textStyle: {
+      //           color: "#fff",
+      //         },
+      //         fontFamily: "PingFang",
+      //         fontSize: 14,
+      //       },
+      //       axisLine: {
+      //         lineStyle: {
+      //           color: "#9fdbfd",
+      //           width: 2,
+      //         },
+      //       },
+      //       axisTick: {
+      //         //刻度线
+      //         show: false,
+      //       },
+      //     },
+      //     dataZoom: [
+      //       {
+      //         type: "inside",
+      //         show: true,
+      //         yAxisIndex: 0,
+      //         // start: 0,
+      //         // end: 20,
+      //         width: "3%",
+      //         height: "80%",
+      //         left: "0%",
+      //         borderColor: "#fff",
+      //         fillerColor: "#fff",
+      //         textStyle: false,
+      //         zoomOnMouseWheel: false, //滚轮是否触发缩放
+      //         moveOnMouseMove: true, //鼠标滚轮触发滚动
+      //         moveOnMouseWheel: true,
+      //       },
+      //     ],
+      //     series: [
+      //       {
+      //         name: "hsjcfb",
+      //         type: "bar",
+      //         stack: "total",
+      //         label: {
+      //           show: true,
+      //           position: "right",
+      //           textStyle: {
+      //             color: "#fff",
+      //           },
+      //           fontFamily: "PingFang",
+      //           fontSize: 14,
+      //           // backgroundColor:{
+      //           //   image:"http://localhost:8080/libs/img/rightDiv_bg.a80d9d2a.png"
+      //           //   }
+      //         },
+      //         rich: {},
+      //         itemStyle: {
+      //           normal: {
+      //             color: function (params) {
+      //               if (params.name == name) {
+      //                 return new that.$echarts.graphic.LinearGradient(
+      //                   1,
+      //                   0,
+      //                   0,
+      //                   0,
+      //                   [
+      //                     { offset: 0, color: "#FF8C4C" },
+      //                     { offset: 1, color: "#FEDB76" },
+      //                   ]
+      //                 );
+      //               } else {
+      //                 return new that.$echarts.graphic.LinearGradient(
+      //                   1,
+      //                   0,
+      //                   0,
+      //                   0,
+      //                   [
+      //                     { offset: 1, color: "#16DCE9" },
+      //                     { offset: 0, color: "#00B7FC" },
+      //                   ]
+      //                 );
+      //               }
+      //             },
+      //           },
+      //           // color: "#00B7FC",
+      //         },
+      //         // barGap:'80%',
+      //         // barCategoryGap:'50%',
+      //         barWidth: 25, //柱图宽度
+      //         data: [that.hsfb['景宁县'], that.hsfb['庆元县'], that.hsfb['云和县'], that.hsfb['松阳县'], that.hsfb['遂昌县'], that.hsfb['缙云县'], that.hsfb['青田县'], that.hsfb['龙泉市'], that.hsfb['经开区'], that.hsfb['莲都区']],
+      //       },
+      //     ],
+      //   });
+      // });
       window.addEventListener("resize", () => {
         chart.resize();
       });

@@ -30,7 +30,7 @@ export default {
         var nameTemp = element['区县'];
         ylist[nameTemp]=element['各区县入境物品从业人员数']
       });
-      console.log("入境物品",ylist);
+      // console.log("入境物品",ylist);
       const option = {
         grid: {
           top: "3%",
@@ -131,121 +131,6 @@ export default {
         ],
       };
       chart.setOption(option);
-      chart.on('click', function(params) {
-          let name = params.name ;
-          chart.setOption({
-            grid: {
-              top: "3%",
-              left: "10%",
-              //   right: '4%',
-              bottom: "30%",
-              height:"70%"
-            },
-            yAxis: {
-              type: "value",
-              max: 600,
-              axisLabel: {
-                show: true,
-                textStyle: {
-                  color: "#fff",
-                },
-              fontFamily:"youshebiaotihei",
-              fontSize:14
-              },
-              axisLine: {
-                lineStyle: {
-                  color: "#9fdbfd",
-                  width: 2,
-                },
-              },
-              axisTick: {
-                //刻度线
-                show: false,
-              },
-              splitLine: {
-                //网格线
-                show: false,
-              },
-            },
-            xAxis: {
-              type: "category",
-              data: [
-                "莲都区",
-                "经开区",
-                "龙泉市",
-                "青田县",
-                "缙云县",
-                "遂昌县",
-                "松阳县",
-                "云和县",
-                "庆元县",
-                "景宁县",
-              ],
-              axisLabel: {
-                show: true,
-                textStyle: {
-                  color: "#fff",
-                },
-                rotate:45,
-                fontFamily:"PingFang",
-                fontSize:14
-              },
-              axisLine: {
-                lineStyle: {
-                  color: "#9fdbfd",
-                  width: 2,
-                },
-              },
-              axisTick: {
-                //刻度线
-                show: false,
-              },
-            },
-            series: [
-              {
-                name: "rjry",
-                type: "bar",
-                stack: "total",
-                label: {
-                  show: true,
-                  position:"top",
-                  color:"#FFF",
-                  fontFamily:"PingFang",
-                  fontSize:14
-                },
-                itemStyle: {
-                  normal:{
-                    color: function(params){
-                      if(params.name==name){
-                        return  new that.$echarts.graphic.LinearGradient(
-                          0,0,0,1,
-                          [
-                                {offset: 0, color: '#FF8C4C'},
-                                {offset: 1, color: '#FEDB76'},
-                          ]
-                        )
-                      }else{
-                        return  new that.$echarts.graphic.LinearGradient(
-                          0,0,0,1,
-                          [
-                                {offset: 1, color: '#16DCE9'},
-                                {offset: 0, color: '#00B7FC'},
-                          ]
-                        )
-                      }
-      
-                    } 
-                  },
-
-                },
-                // barGap:'80%',
-                // barCategoryGap:'50%',
-                barWidth: 20, //柱图宽度
-                data: [ylist['莲都区'], ylist['经开区'], ylist['龙泉市'], ylist['青田县'], ylist['缙云县'], ylist['遂昌县'], ylist['松阳县'], ylist['云和县'], ylist['庆元县'],ylist['景宁县']],
-              },
-            ],
-          });
-      })
       window.addEventListener("resize", () => {
         chart.resize();
       });

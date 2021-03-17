@@ -11,6 +11,7 @@ import 'element-ui/lib/theme-chalk/index.css';
 
 import "@/font/YouSheBiaoTiHei.css";
 import "@/font/PingFang.css";
+import "@/font/AdventBd.css";
 
 Vue.use(ElementUI);
 Vue.prototype.$echarts = echarts;

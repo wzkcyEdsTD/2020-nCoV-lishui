@@ -7,15 +7,29 @@
     <div class="data">
       <div class="left">
         <div class="leftIcon">
-          <div class="text">昨日<br />核酸监测</div>
+          <div class="text">
+            <!-- <div>昨日</div> -->
+            <div>核酸监测</div>
+            <div style="display: flex;justify-content: center;">
+              <div class="numberText">{{hsjcNum}}</div>
+              <div style="padding-top: 0.7vh;padding-left:0.1vh">人</div>
+            </div>
+          </div>
         </div>
-        <div class="textData">{{`${hsjcNum}人`}}</div>
+        <!-- <div class="textData">{{`${hsjcNum}人`}}</div> -->
       </div>
       <div class="right">
         <div class="rightIcon">
-          <div class="text">昨日<br />就诊人数</div>
+          <div class="text">
+            <!-- <div>昨日</div> -->
+            <div>就诊人数</div>
+            <div style="display: flex;justify-content: center;">
+              <div class="numberText">{{jzNum}}</div>
+              <div style="padding-top: 0.7vh;padding-left:0.1vh">人</div>
+            </div>
+          </div>
         </div>
-        <div class="textData">{{`${jzNum}人`}}</div>
+        <!-- <div class="textData">{{`${jzNum}人`}}</div> -->
       </div>
     </div>
   </div>
@@ -79,6 +93,7 @@ export default {
   }
   .data {
     display: flex;
+    margin-top: 1vh;
     .left {
       display: flex;
       flex-flow: column;
@@ -88,8 +103,8 @@ export default {
       // background-size: 100%;
       .leftIcon {
         margin-top: 1vh;
-        width: 14vh;
-        height: 14vh;
+        width: 15vh;
+        height: 15vh;
         background-image: url("~@/components/common/image/蓝圆圈.png");
         background-size: 100%;
         .text {
@@ -100,6 +115,11 @@ export default {
           font-family: youshebiaotihei;
           font-size: 2vh;
           text-shadow: 0px 2px 4px #000000;
+          .numberText{
+            font-size: 2.8vh;
+            font-family: AdventBd;
+            -webkit-text-stroke: 1px #fff;
+          }
         }
       }
       .textData {
@@ -116,8 +136,8 @@ export default {
       flex-flow: column;
       .rightIcon {
         margin-top: 1vh;
-        width: 14vh;
-        height: 14vh;
+        width: 15vh;
+        height: 15vh;
         background-image: url("~@/components/common/image/橙圆圈.png");
         background-size: 100%;
         .text {
@@ -128,6 +148,11 @@ export default {
           font-family: youshebiaotihei;
           font-size: 2vh;
           text-shadow: 0px 2px 4px #000000;
+          .numberText{
+            font-size: 2.8vh;
+            font-family: AdventBd;
+            -webkit-text-stroke: 1px #fff;
+          }
         }
       }
       .textData {
