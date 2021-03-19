@@ -9,7 +9,7 @@
         <div class="leftIcon">
           <div class="text">
             <!-- <div>昨日</div> -->
-            <div>核酸监测</div>
+            <div>核酸检测</div>
             <div style="display: flex;justify-content: center;">
               <div class="numberText">{{hsjcNum}}</div>
               <div style="padding-top: 0.7vh;padding-left:0.1vh">人</div>

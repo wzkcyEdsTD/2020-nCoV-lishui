@@ -37,7 +37,19 @@ const doMassFeatureLayer = async (context, { url, id }, shallTop = true) => {
                 image: "/libs/img/video.png",
                 title: "查看详情"
               }]
-            : [{
+            :id == "theme_data@1" ? 
+              [
+                {
+                  id: "feature-yjmd-overview",
+                  image: "/libs/img/video.png",
+                  title: "移交名单"
+                }, {
+                  id: "feature-yjmd-detail",
+                  image: "/libs/img/video.png",
+                  title: "移交名单"
+                }
+              ] 
+              :[{
               id: "feature-video-overview",
               image: "/libs/img/video.png",
               title: "查看监控"

@@ -17,15 +17,30 @@ serverInstanec.interceptors.request.use(config => {
  */
 const apiJSonGet = (tableName, page) => {
     const option = { url: "/commonApiJson/get", method: "post" };
-    option.data = {
-        "[]": {
-            [tableName]: {},
-            "count": 100,
-            "page": page,
-            "query": 2
-        },
-        "total@": "/[]/total"
-    };
+    if (tableName != 'SzlsDwSjjhSwjwHsjcxx') {
+        option.data = {
+            "[]": {
+                [tableName]: {},
+                "count": 100,
+                "page": page,
+                "query": 2
+            },
+            "total@": "/[]/total"
+        };
+    } else {
+        option.data = {
+            "[]": {
+                [tableName]: {
+                    "@order": "jcsj-",
+                },
+                "count": 100,
+                "page": page,
+                "query": 2
+            },
+            "total@": "/[]/total"
+        };
+    }
+
     return serverInstanec.request(option).then(res => {
         //  status判断登录状态 
         if (res.data.status == 500) {
