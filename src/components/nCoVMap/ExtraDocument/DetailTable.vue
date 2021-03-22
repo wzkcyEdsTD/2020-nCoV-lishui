@@ -221,7 +221,9 @@ export default {
         background: rgba(255, 255, 255, 0.2) !important;
       }
     }
-
+    .el-table__body-wrapper{
+      min-height: 551px !important;
+    }
     * {
       color: #fff;
       background: transparent !important;
