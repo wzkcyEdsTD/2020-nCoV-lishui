@@ -34,7 +34,7 @@ export default {
       const option = {
         grid: {
           top: "3%",
-          left: "10%",
+          left: "13%",
           //   right: '4%',
           bottom: "30%",
           height:"70%"
@@ -131,9 +131,7 @@ export default {
         ],
       };
       chart.setOption(option);
-      window.addEventListener("resize", () => {
-        chart.resize();
-      });
+
     },
   },
   created() {},

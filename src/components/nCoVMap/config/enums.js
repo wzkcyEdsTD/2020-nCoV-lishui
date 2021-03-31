@@ -4,6 +4,72 @@ export const xmMenu = [{
   children: [
     // { id: 'inside-jx', label: '疑似病例', unit: '例' },
     {
+      id: 'theme_data@6',
+      label: '发热门诊信息',
+      amount: 17,
+      unit: '条',
+      table: {
+        tableName: "SzlsDwSjjhWjwFrmzxx",
+        fields: [
+          "ssyljgmc@所属医疗机构名称",
+          "dz@地址",
+          "lxdh@联系电话",
+          "fzr@负责人"
+        ],
+        primaryKey: "tongid"
+      }
+    },
+    {
+      id: 'outside-mzjzxx',
+      label: '门诊就诊信息',
+      amount:16192876,
+      unit: '条',
+      table: {
+        tableName: "SzlsDwSjjhSwjwMzjzxx",
+        fields: [
+          "xm@姓名",
+          "hzzsy@患者主索引",
+          "yydm@医院代码",
+          "yymc@医院名称",
+          "xbdm@性别代码",
+          "lxdh@联系电话",
+          "jzlsh@就诊流水号",
+          "jzlxdm@就诊类型代码",
+        ],
+        primaryKey: "tongid"
+      }
+    },
+    {
+      id: 'outside-mzjzjlxx',
+      label: '门诊就诊记录信息',
+      amount:12024160,
+      unit: '条',
+      table: {
+        tableName: "SzlsDwSjjhSwjwMzjzjlxx",
+        fields: [
+          "zdmc@诊断名称(主要)",
+          "xbdm@性别代码",
+          "xm@姓名",
+          "zdbm@诊断编码(主要)",
+          "jzrq@就诊时间",
+          "yljgdm@医疗机构代码",
+          "ghlsh@挂号流水号",
+          "jzlsh@就诊流水号",
+          "xbs@现病史",
+          "hzqxdm@患者去向代码",
+          "klx@卡类型",
+          "zzms@症状描述",
+          "kh@卡号",
+          "jzksbm@科室编码",
+          "zs@主诉",
+          "sffz@是否复诊",
+          "mzlb@门诊类别",
+          "hzsfzh@患者身份证号",
+        ],
+        primaryKey: "tongid"
+      }
+    },
+    {
       id: 'inside-visitor',
       label: '访客登记表',
       unit: '人',
@@ -99,7 +165,7 @@ export const xmMenu = [{
     },
     {
       id: 'theme_data@3',
-      label: '卡口信息',
+      label: '高铁站卡口信息',
       amount: 1,
       unit: '个',
       table: {
@@ -130,6 +196,26 @@ export const xmMenu = [{
           "cfd@出发地",
           "mdd@目的地",
           "jcsj@检查时间"
+        ],
+        primaryKey: "tongid"
+      }
+    },
+    {
+      id: 'inside-kkxx',
+      label: '卡口信息及人员信息',
+      unit: '条',
+      table: {
+        tableName: "SzlsDwSjjhGajKkxxjryxx",
+        fields: [
+          "kkmc@卡口名称",
+          "kkdz@卡口地址",
+          "fzdw@负责单位",
+          "kkfzr@卡口负责人",
+          "fzrsfzhm@负责人身份证号码",
+          "kkfzrlxfs@卡口负责人联系方式",
+          "xm@姓名",
+          "sfzhm@身份证号码",
+          "lxfs@联系方式",
         ],
         primaryKey: "tongid"
       }
@@ -329,6 +415,107 @@ export const xmMenu = [{
         primaryKey: "tongid"
       }
     },
+
+    {
+      id: 'inside-zydj',
+      label: '住院登记信息',
+      unit: '条',
+      table: {
+        tableName: "SzlsDwSjjhSwjwZydjxx",
+        fields: [
+          "xm@姓名",
+          "hzzsy@患者主索引",
+          "yydm@医院代码（业务机构代码）",
+          "yymc@医院名称",
+          "xbdm@性别代码",
+          "lxdh@联系电话",
+          "zylsh@住院流水号",
+        ],
+        primaryKey: "tongid"
+      }
+    },
+    {
+      id: 'theme_data',
+      label: '发热门诊患者',
+      unit: '人',
+      table: {
+        tableName: "SzlsDwSjjhWjwFrmzhzxx",
+        fields: [
+          "xm@姓名",
+          "sfzhm@身份证号",
+          "jzsj@就诊时间",
+          "jzyy@就诊医院",
+          "yytyshxydm@医院统一社会信用代码",
+          "lxsj@联系手机",
+          "zdmc@诊断名称",
+          "jtzz@家庭住址",
+          "zrjd@责任街道",
+          "zrsq@责任社区"
+        ],
+        primaryKey: "tongid"
+      }
+    },
+    {
+      id: 'outside-qz',
+      label: '确诊病例',
+      unit: '例',
+      table: {
+        tableName: "SzlsDwSjjhWjwQzblxx",
+        fields: [
+          "xm@姓名",
+          "sfzh@身份证号",
+          "fxsj@发现时间",
+          "zlqk@治疗情况",
+          "ysbjcry@疑似被接触人员",
+          "tjwz@途径位置",
+          "lxsj@联系手机",
+          "tjsj@统计时间",
+          "xzyy@现住医院",
+          "jcryxxjcs@接触人员信息（接触史）"
+        ],
+        primaryKey: "tongid"
+      }
+    },
+    {
+      id: 'outside-fr',
+      label: '无症状感染者',
+      unit: '人',
+      table: {
+        tableName: "SzlsDwSjjhWjwWzzgrzxx",
+        fields: [
+          "xm@姓名",
+          "sfzhm@身份证号",
+          "jcryxx@接触人员信息",
+          "jqtjlx@近期途径路线",
+          "jqjcry@近期接触人员",
+          "lxsj@联系手机",
+          "fxsj@发现时间",
+          "xzyy@现住医院",
+          "jcryxxjcs@接触人员信息（接触史）"
+        ],
+        primaryKey: "tongid"
+      }
+    },
+    {
+      id: 'outside-care',
+      label: '密切接触者',
+      unit: '人',
+      table: {
+        tableName: "SzlsDwSjjhWjwMqjczxx",
+        fields: [
+          "xm@姓名",
+          "sfzh@身份证号",
+          "fxsj@发现时间",
+          "hsjcjg@核酸检测结果",
+          "ysbjcry@疑似被接触人员",
+          "lxfs@联系方式",
+          "tjwz@途径位置",
+          "zrjd@责任街道",
+          "zrsq@责任社区"
+        ],
+        primaryKey: "tongid"
+      }
+    },
   ]
 }, {
   id: 'outside',
@@ -424,88 +611,7 @@ export const xmMenu = [{
         primaryKey: "tongid"
       }
     },
-    {
-      id: 'theme_data',
-      label: '发热门诊患者',
-      unit: '人',
-      table: {
-        tableName: "SzlsDwSjjhWjwFrmzhzxx",
-        fields: [
-          "xm@姓名",
-          "sfzhm@身份证号",
-          "jzsj@就诊时间",
-          "jzyy@就诊医院",
-          "yytyshxydm@医院统一社会信用代码",
-          "lxsj@联系手机",
-          "zdmc@诊断名称",
-          "jtzz@家庭住址",
-          "zrjd@责任街道",
-          "zrsq@责任社区"
-        ],
-        primaryKey: "tongid"
-      }
-    },
-    {
-      id: 'outside-qz',
-      label: '确诊病例',
-      unit: '例',
-      table: {
-        tableName: "SzlsDwSjjhWjwQzblxx",
-        fields: [
-          "xm@姓名",
-          "sfzh@身份证号",
-          "fxsj@发现时间",
-          "zlqk@治疗情况",
-          "ysbjcry@疑似被接触人员",
-          "tjwz@途径位置",
-          "lxsj@联系手机",
-          "tjsj@统计时间",
-          "xzyy@现住医院",
-          "jcryxxjcs@接触人员信息（接触史）"
-        ],
-        primaryKey: "tongid"
-      }
-    },
-    {
-      id: 'outside-fr',
-      label: '无症状感染者',
-      unit: '人',
-      table: {
-        tableName: "SzlsDwSjjhWjwWzzgrzxx",
-        fields: [
-          "xm@姓名",
-          "sfzhm@身份证号",
-          "jcryxx@接触人员信息",
-          "jqtjlx@近期途径路线",
-          "jqjcry@近期接触人员",
-          "lxsj@联系手机",
-          "fxsj@发现时间",
-          "xzyy@现住医院",
-          "jcryxxjcs@接触人员信息（接触史）"
-        ],
-        primaryKey: "tongid"
-      }
-    },
-    {
-      id: 'outside-care',
-      label: '密切接触者',
-      unit: '人',
-      table: {
-        tableName: "SzlsDwSjjhWjwMqjczxx",
-        fields: [
-          "xm@姓名",
-          "sfzh@身份证号",
-          "fxsj@发现时间",
-          "hsjcjg@核酸检测结果",
-          "ysbjcry@疑似被接触人员",
-          "lxfs@联系方式",
-          "tjwz@途径位置",
-          "zrjd@责任街道",
-          "zrsq@责任社区"
-        ],
-        primaryKey: "tongid"
-      }
-    },
+
     {
       id: 'outside-inboundPassengers',
       label: '重点涉丽入境旅客信息',
@@ -596,6 +702,7 @@ export const xmMenu = [{
         primaryKey: "tongid"
       }
     },
+
   ]
 }, {
   id: 'goods',
@@ -669,6 +776,7 @@ export const xmMenu = [{
     {
       id: 'ability-wz-resource',
       label: '新冠疫苗接种地点',
+      amount:132,
       unit: '个',
       table: {
         tableName: "SzlsDwSjjhWjwJgymjzddxx",
@@ -684,37 +792,209 @@ export const xmMenu = [{
     {
       id: 'ability-fc',
       label: '新冠疫苗接种数据',
+      amount:96607,
       unit: '条',
       table: {
-        tableName: "SzlsDwSjjhWjwXgymjzsjxx",
+        tableName: "SzlsDwSjjhWjwXgymszz",
         fields: [
-          "bjzyxm@被接种员姓名",
-          "sfzhm@身份证号码",
-          "lxsj@联系手机",
-          "jzsj@接种时间",
-          "jzjg@接种结构",
-          "jzdd@接种地点",
-          "ymmc@疫苗名称",
-          "jzdw@接种单位",
-          "jzdwtyshxydm@接种单位统一社会信用代码"
+          "szzbm@受种者编码",
+          "sfzhm@身份证件号",
+          "sfzhm_bq@身份证件号",
+          "tmbh@条码编号",
+          "szzxm@受种者姓名",
+          "scrq@出生日期",
+          "jzrq@接种日期",
+          "gsmz@归属门诊",
+          "ymzljc@疫苗种类/剂次",
+          "ymzp@疫苗制品",
+          "scqy@生产企业",
+          "ymph@疫苗批号",
+          "dzjgm@电子监管码",
+          "yxq@有效期",
+          "msssx@民生实事项",
+          "ymjg@疫苗价格(元)",
+          "fwf@服务费(元)",
+          "syf@储运费(元)",
+          "jjys@接种医生",
+          "jzbw@接种部位",
+          "jjtj@接种途径",
+          "jzmz@接种门诊名称",
+          "jwh@居委会",
+          "yddh@移动电话",
+          "qtdh@其他电话",
+          "hjlx@户籍类型",
+          "szzzt@受种者状态",     
+          "hbsag@HBSAG检查",
+          "xjzd@现居住地",
+          "sjly@数据来源",
+
         ],
         primaryKey: "tongid"
       }
     },
     {
-      id: 'ability-zydj',
-      label: '住院登记信息',
+      id: 'theme_data@5',
+      label: '医疗物资仓库',
+      amount: 1,
+      unit: '个',
+      table: {
+        tableName: "SzlsDwSjjhWjwYlwzckxx",
+        fields: [
+          "ckmc@仓库名称",
+          "ckdz@仓库地址",
+          "glbm@管理部门",
+          "fzrxm@负责人姓名",
+          "fzrlxsj@负责人联系手机"
+        ],
+        primaryKey: "tongid"
+      }
+    },
+    {
+      id: 'ability-fr-mz',
+      label: '医疗物资库存',
+      amount: 5,
+      unit: '个',
+      table: {
+        tableName: "SzlaDwSjjhWjwYlwzkxx",
+        fields: [
+          "wzmc@物资名称",
+          "wzglyxm@物资管理员姓名",
+          "wzglylxfs@物资管理员联系方式",
+          "glbm@管理部门",
+          "ckdz@仓库地址",
+          "tjsj@统计时间"
+        ],
+        primaryKey: "tongid"
+      }
+    },
+    {
+      id: 'ability-xx-info',
+      label: '隔离点及人员信息',
+      unit: '个',
+      table: {
+        tableName: "SzlsDwSjjhWjwGldgzryxx",
+        fields: [
+          "gldmc@隔离点名称",
+          "dz@地址",
+          "glfjsl@隔离房间数量",
+          "sysl@剩余数量",
+          "fzr@负责人",
+          "fzrsfzh@负责人身份证号",
+          "fzrlxsj@负责人联系手机",
+          "xm@姓名",
+          "sfzh@身份证号",
+          "gw@岗位",
+          "lxsj@联系手机",
+          "jkqk@健康情况"
+        ],
+        primaryKey: "tongid"
+      }
+    },
+    {
+      id: 'theme_data@12',
+      label: '方舱',
+      amount: 1,
+      unit: '个',
+      table: {
+        tableName: "SzlsDwSjjhWjwFcxx",
+        fields: [
+          "fcmc@方仓名称",
+          "fcdz@方仓地址",
+          "gljg@管理机构",
+          "cws@床位数",
+          "cwsys@床位剩余数",
+          "fzr@负责人",
+          "sfzhm@身份证号码",
+          "lxdh@联系电话"
+        ],
+        primaryKey: "tongid"
+      }
+    },
+    {
+      id: 'ability-fy-subway',
+      label: '负压救护车',
+      amount: 28,
+      unit: '辆',
+      table: {
+        tableName: "SzlsDwSjjhWjwFyjhcxx",
+        fields: [
+          "cphm@车牌号码",
+          "ssyljg@所属医疗机构",
+          "gpsxx@GPS信息",
+          "ssxq@所属县区",
+          "cllx@车辆类型",
+          "clxh@车辆型号",
+          "sprq@上牌日期"
+        ],
+        primaryKey: "tongid"
+      }
+    },
+    {
+      id: 'theme_data@11',
+      label: '新冠检测专用CT信息',
+      amount: 34,
       unit: '条',
       table: {
-        tableName: "SzlsDwSjjhSwjwZydjxx",
+        tableName: "SzlsDwSjhWjwXgjczyctxx",
         fields: [
-          "xm@姓名",
-          "hzzsy@患者主索引",
-          "yydm@医院代码（业务机构代码）",
+          "bh@编号",
+          "xh@型号",
+          "ssyljg@所属医疗机构"
+        ],
+        primaryKey: "tongid"
+      }
+    },
+    {
+      id: 'theme_data@7',
+      label: '新冠定点医院信息',
+      amount: 10,
+      unit: '座',
+      table: {
+        tableName: "SzlsDwSjjhWjwXgddyyxx",
+        fields: [
           "yymc@医院名称",
-          "xbdm@性别代码",
-          "lxdh@联系电话",
-          "zylsh@住院流水号",
+          "yydz@医院地址",
+          "fzr@负责人",
+          "fzrlxsj@负责人联系手机"
+        ],
+        primaryKey: "tongid"
+      }
+    },
+
+    {
+      id: 'theme_data@9',
+      label: '核酸检测点',
+      amount: 27,
+      unit: '个',
+      table: {
+        tableName: "SzlsDwSjjhWjwHsjcdxx",
+        fields: [
+          "mc@名称",
+          "dz@地址",
+          "fzr@负责人",
+          "fzrlxsj@负责人联系手机"
+        ],
+        primaryKey: "tongid"
+      }
+    },
+    {
+      id: 'ability-wz',
+      label: '核酸检测信息',
+      amount: 132938,
+      unit: '条',
+      table: {
+        tableName: "SzlsDwSjjhSwjwHsjcxx",
+        fields: [
+          "bjcrxm@被检测人员姓名",
+          "sfzh@身份证号码",
+          "bjcrylxdh@被检测人员联系手机",
+          "jcsj@检测时间",
+          "jcjg@检测机构",
+          "jcjgtyshxydm@检测机构统一社会信用代码",
+          "jcfs@检测方式",
+          "jcdd@检测地点",
+          "jcjig@检测结果",
+          "jcryxm@检测人员姓名"
         ],
         primaryKey: "tongid"
       }

@@ -173,6 +173,56 @@ export default {
               },
               foreignKey:""
             });
+          } else if(event.action.id === "feature-dkjl"){
+            // console.log('detail',);
+            const item = event.target.content.graphic.attributes;
+            // debugger
+            this.$hub.$emit("set-detail-table", {
+              id:"dkjl",
+              label: '学生打卡信息',
+              relation:true,
+              key:item.xxmc,
+              table: {
+                tableName: "SzlsDwSjjhJyjXsjkqkdkxx",
+                fields: [
+                  "xxmc@学校名称",
+                  "xxdz@学校地址",
+                  "bjmc@班级名称",
+                  "bjrs@班级人数",
+                  "ycrs@异常人数",
+                  "rq@日期",
+                ],
+                primaryKey: "tongid"
+              },
+              foreignKey:""
+            });
+          }else if(event.action.id === "feature-jcxx"){
+            // console.log('detail',);
+            const item = event.target.content.graphic.attributes;
+            // debugger
+            this.$hub.$emit("set-detail-table", {
+              id:"hsjcxx",
+              label: '核酸检测信息',
+              relation:true,
+              key:item.mc,
+              table: {
+                tableName: "SzlsDwSjjhSwjwHsjcxx",
+                fields: [
+                  "bjcrxm@被检测人员姓名",
+                  "sfzh@身份证号码",
+                  "bjcrylxdh@被检测人员联系手机",
+                  "jcsj@检测时间",
+                  "jcjg@检测机构",
+                  "jcjgtyshxydm@检测机构统一社会信用代码",
+                  "jcfs@检测方式",
+                  "jcdd@检测地点",
+                  "jcjig@检测结果",
+                  "jcryxm@检测人员姓名"
+                ],
+                primaryKey: "tongid"
+              },
+              foreignKey:""
+            });
           }
         });
       });
@@ -195,5 +245,12 @@ export default {
     width: 100%;
     height: 100%;
   }
+}
+/deep/.esri-icon-handle-horizontal{
+  display: none;
+}
+
+/deep/.esri-popup__feature-menu-button{
+  pointer-events:none
 }
 </style>

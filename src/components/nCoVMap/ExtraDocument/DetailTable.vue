@@ -38,7 +38,7 @@
 </template>
 
 <script>
-import { fetchTableByApi } from "@/api/tableAPI";
+import { fetchTableByApi,relationTableByApi } from "@/api/tableAPI";
 export default {
   data() {
     return {
@@ -49,6 +49,8 @@ export default {
       currenPage: 0,
       total: 0,
       config: {},
+      isRelation:false,
+      key:undefined,
     };
   },
   mounted() {
@@ -60,11 +62,19 @@ export default {
       //  更换表格数据
       this.$hub.$off("set-detail-table");
       this.$hub.$on("set-detail-table", async (config) => {
-        const { label, table } = config;
+        const { label, table, relation ,key} = config;
+        // debugger
         const { tableName, fields } = table;
+        this.relation = relation
         this.title = label;
         this.config = config;
-        const arr = await fetchTableByApi(tableName);
+        let arr = {};
+        this.key = key;
+        if (!relation) {
+          arr = await fetchTableByApi(tableName);
+        }else{
+          arr = await relationTableByApi(tableName,key);
+        }
         // debugger
         this.total = Math.ceil((arr.total || 0) / 10);
         this.fixColumn(fields);
@@ -116,7 +126,16 @@ export default {
      */
     async handleCurrentChange(val) {
       const { tableName } = this.config.table;
-      const arr = await fetchTableByApi(tableName, val - 1);
+      if (!this.config.relation) {
+        this.relation = false
+        this.key = null
+      }
+      let arr = {}
+      if (!this.relation) {        
+        arr = await fetchTableByApi(tableName, val - 1);
+      }else if (this.relation && this.key) {
+        arr = await relationTableByApi(tableName,this.key ,val - 1);
+      }
       const data = arr.data ? arr.data.map((v) => v[tableName]) : [];
       this.fixData(data);
       document.querySelector(".el-table__body-wrapper").scrollTop = 0;
@@ -130,6 +149,8 @@ export default {
       this.total = 0;
       this.config = {};
       this.isFold = false;
+      this.isRelation = false;
+      this.key = undefined;
     },
   },
 };
@@ -223,6 +244,7 @@ export default {
     }
     .el-table__body-wrapper{
       min-height: 551px !important;
+
     }
     * {
       color: #fff;

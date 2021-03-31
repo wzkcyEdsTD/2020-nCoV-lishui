@@ -27,6 +27,7 @@ const doMassFeatureLayer = async (context, { url, id }, shallTop = true) => {
       loadModules(["esri/layers/FeatureLayer",]).then(([FeatureLayer]) => {
         const option = { url, id, opacity: 1, outFields: ["*"], };
         option.popupTemplate = {
+          // overwriteActions:true,
           actions: id == "theme_data@5"
             ? [{
               id: "feature-video-overview",
@@ -40,16 +41,28 @@ const doMassFeatureLayer = async (context, { url, id }, shallTop = true) => {
             :id == "theme_data@1" ? 
               [
                 {
-                  id: "feature-yjmd-overview",
-                  image: "/libs/img/video.png",
-                  title: "移交名单"
-                }, {
                   id: "feature-yjmd-detail",
                   image: "/libs/img/video.png",
                   title: "移交名单"
                 }
               ] 
-              :[{
+            :id =="theme_data@9"?
+            [
+              {},{
+                id: "feature-jcxx",
+                image: "/libs/img/video.png",
+                title: "检测信息"
+              }
+            ]
+            :id =="theme_data@4" ?
+              [
+                {}, {
+                  id: "feature-dkjl",
+                  image: "/libs/img/video.png",
+                  title: "打卡信息"
+                }
+              ] 
+             :[{
               id: "feature-video-overview",
               image: "/libs/img/video.png",
               title: "查看监控"
@@ -112,6 +125,7 @@ export const fetchFeatureByXhr = async (context, { id, table, label }, row) => {
     const url = `${SERVER}/${layer}/MapServer/${level}`
     const where = `${primaryKey} = '${row[primaryKey]}'`;
     const { data } = await fetchArcgisServer({ url, where });
+    // debugger
     if (data.features.length) {
       data.features.length && doArcgisPopup(context, data.features[0], data.fieldAliases, id)
     } else {
@@ -149,6 +163,8 @@ export const doArcgisPopup = (
       attributes
     });
     console.log("id",id);
+
+
     popGraphic.popupTemplate = new PopupTemplate({
       content: `<div class="yqPopFrame"><div>${_html_}</div></div>`,
       ...(attributes.video_url ? {
@@ -173,17 +189,31 @@ export const doArcgisPopup = (
         ]} 
       :id == "theme_data@1" ? {
         actions: [
-          {
-            id: "feature-yjmd-overview",
-            image: "/libs/img/video.png",
-            title: "移交名单"
-          }, {
+          {}, {
             id: "feature-yjmd-detail",
             image: "/libs/img/video.png",
             title: "移交名单"
           }
-        ]} : {})
+        ]}
+      :id =="theme_data@9"?{
+        actions: [
+          {},{
+            id: "feature-jcxx",
+            image: "/libs/img/video.png",
+            title: "检测信息"
+          }
+        ]} 
+      :id =="theme_data@4" ?{
+        actions: [
+          {},{
+            id: "feature-dkjl",
+            image: "/libs/img/video.png",
+            title: "打卡信息"
+          }
+        ]} 
+        : {})
     });
+
     context.view.popup.clear();
     context.view.popup.open({
       features: [popGraphic],
