@@ -62,6 +62,14 @@ const doMassFeatureLayer = async (context, { url, id }, shallTop = true) => {
                   title: "打卡信息"
                 }
               ] 
+            :id =="theme_data@13" ?
+            [
+              {}, {
+                id: "feature-ymjz",
+                image: "/libs/img/video.png",
+                title: "接种信息"
+              }
+            ] 
              :[{
               id: "feature-video-overview",
               image: "/libs/img/video.png",
@@ -209,6 +217,14 @@ export const doArcgisPopup = (
             id: "feature-dkjl",
             image: "/libs/img/video.png",
             title: "打卡信息"
+          }
+        ]} 
+      :id =="theme_data@13" ?{
+        actions: [
+          {},{
+            id: "feature-ymjz",
+            image: "/libs/img/video.png",
+            title: "接种信息"
           }
         ]} 
         : {})

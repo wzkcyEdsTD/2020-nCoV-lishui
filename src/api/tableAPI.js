@@ -86,6 +86,20 @@ const apiJSonGetRelation = (tableName, key, page) => {
             },
             "total@": "/[]/total"
         };
+    }else if(tableName == 'SzlsDwSjjhWjwXgymszz'){
+        //疫苗接种数据
+        option.data = {
+            "[]": {
+                [tableName]: {
+                    "gsmz{}":[key],
+                    "@order": "jzrq-",
+                },
+                "count": 100,
+                "page": page,
+                "query": 2
+            },
+            "total@": "/[]/total"
+        };
     }else {
         option.data = {
             "[]": {

@@ -223,6 +223,53 @@ export default {
               },
               foreignKey:""
             });
+          }else if(event.action.id === "feature-ymjz"){
+            // console.log('detail',);
+            const item = event.target.content.graphic.attributes;
+            this.$hub.$emit("set-detail-table", {
+              id:"ymjzxx",
+              label: '新冠疫苗接种信息',
+              relation:true,
+              key:item.mc,
+              table: {
+                tableName: "SzlsDwSjjhWjwXgymszz",
+                fields: [
+                  "szzbm@受种者编码",
+                  "sfzhm@身份证件号",
+                  "sfzhm_bq@身份证件号",
+                  "tmbh@条码编号",
+                  "szzxm@受种者姓名",
+                  "scrq@出生日期",
+                  "jzrq@接种日期",
+                  "gsmz@归属门诊",
+                  "ymzljc@疫苗种类/剂次",
+                  "ymzp@疫苗制品",
+                  "scqy@生产企业",
+                  "ymph@疫苗批号",
+                  "dzjgm@电子监管码",
+                  "yxq@有效期",
+                  "msssx@民生实事项",
+                  "ymjg@疫苗价格(元)",
+                  "fwf@服务费(元)",
+                  "syf@储运费(元)",
+                  "jjys@接种医生",
+                  "jzbw@接种部位",
+                  "jjtj@接种途径",
+                  "jzmz@接种门诊名称",
+                  "jwh@居委会",
+                  "yddh@移动电话",
+                  "qtdh@其他电话",
+                  "hjlx@户籍类型",
+                  "szzzt@受种者状态",     
+                  "hbsag@HBSAG检查",
+                  "xjzd@现居住地",
+                  "sjly@数据来源",
+
+                ],
+                primaryKey: "tongid"
+              },
+              foreignKey:""
+            });
           }
         });
       });

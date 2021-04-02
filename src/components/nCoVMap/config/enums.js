@@ -774,7 +774,8 @@ export const xmMenu = [{
       }
     },
     {
-      id: 'ability-wz-resource',
+      // id: 'ability-wz-resource',
+      id: 'theme_data@13',
       label: '新冠疫苗接种地点',
       amount:132,
       unit: '个',
