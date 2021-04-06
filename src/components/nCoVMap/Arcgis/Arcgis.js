@@ -133,7 +133,6 @@ export const fetchFeatureByXhr = async (context, { id, table, label }, row) => {
     const url = `${SERVER}/${layer}/MapServer/${level}`
     const where = `${primaryKey} = '${row[primaryKey]}'`;
     const { data } = await fetchArcgisServer({ url, where });
-    // debugger
     if (data.features.length) {
       data.features.length && doArcgisPopup(context, data.features[0], data.fieldAliases, id)
     } else {
@@ -157,6 +156,13 @@ export const doArcgisPopup = (
   fieldAliases,
   id
 ) => {
+  Object.keys(fieldAliases)
+  .filter(item => !BANNED_PARAMS.includes(item) && !BANNED_PARAMS_COMPANY.includes(item))
+  .map(v=>{
+    if (!attributes[v]) {
+      attributes[v]="-"
+    }
+  })
   const _html_ = Object.keys(fieldAliases)
     .filter(item => !BANNED_PARAMS.includes(item) && !BANNED_PARAMS_COMPANY.includes(item))
     .map(key => reg.test(fieldAliases[key]) ? `<div><span>${fieldAliases[key]}</span><span>${attributes[key]}</span></div>` : ``

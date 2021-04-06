@@ -16,7 +16,7 @@ import {
   doImageAll,
   fetchFeatureByXhr,
 } from "./Arcgis.js";
-
+import { BANNED_PARAMS, BANNED_PARAMS_COMPANY } from "./banned";
 export default {
   name: "nCoVArcgis",
   data() {
@@ -117,6 +117,12 @@ export default {
       this.view.when(() => {
         this.view.popup.watch("selectedFeature", (graphic) => {
           if (graphic) {
+            const list = Object.keys(graphic.attributes).filter(item => !BANNED_PARAMS.includes(item) && !BANNED_PARAMS_COMPANY.includes(item))
+            list.map(key=>{
+              if(!graphic.attributes[key]){
+                graphic.attributes[key]="-"
+              }
+            })
             const graphicTemplate = graphic.getEffectivePopupTemplate();
             if (graphicTemplate.actions)
               graphicTemplate.actions.items[0].visible = graphic.attributes.video_url;
