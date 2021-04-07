@@ -18,6 +18,7 @@ const doMassFeatureLayer = async (context, { url, id }, shallTop = true) => {
     .filter(item => !BANNED_PARAMS.includes(item) && !BANNED_PARAMS_COMPANY.includes(item))
     .map(key => reg.test(fieldAliases[key]) ? `<div><span>${fieldAliases[key]}</span><span>{${key || ""}}</span></div>` : ``
     ).join('')
+    console.log("html",_html_);
   return new Promise((resolve, reject) => {
     if (context.map.findLayerById(id)) {
       context.map.findLayerById(id).visible = true;

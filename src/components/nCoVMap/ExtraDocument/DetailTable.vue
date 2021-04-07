@@ -3,14 +3,21 @@
     <div class="popup-wrapper" />
     <div class="popup-modal">
       <header>
-        <span class="popup-title">{{ title }}</span>
-        <a class="popup-close" @click="clearTable">×</a>
-        <a class="popup-fold" @click="isFold = !isFold" />
+        <div style="padding-bottom:1.5vh">
+          <span class="popup-title">{{ title }}</span>
+          <a class="popup-close" @click="clearTable">×</a>
+          <a class="popup-fold" @click="isFold = !isFold" />
+        </div>
+        <div style="">
+          <div class="popup-img"/>
+        </div>
+
       </header>
       <div class="popup-panel">
         <el-table
           class="detail-popup-table"
           :data="tableData"
+          :row-class-name="tableRowClassName"
           height="100%"
           @cell-click="cellClickHandler"
         >
@@ -57,6 +64,13 @@ export default {
     this.eventRegister();
   },
   methods: {
+    //表格斑马线
+    /* eslint-disable */
+    tableRowClassName({ row, rowIndex }) {
+        if ((rowIndex + 1) % 2 === 1) {
+            return "warning-row";
+        }
+    },
     //  事件绑定
     eventRegister() {
       //  更换表格数据
@@ -166,6 +180,7 @@ export default {
     width: 500px !important;
     bottom: 10px !important;
     left: 340px !important;
+    padding: 9px 16px 14px !important;
     .popup-fold {
       transform: rotate(180deg);
     }
@@ -193,41 +208,56 @@ export default {
     height: 80%;
     left: 10%;
     bottom: 10%;
-    background: rgba(24, 35, 97, 0.9);
-    border: 1px solid #04ecff;
-    border-radius: 8px;
+    // background: rgba(24, 35, 97, 0.9);
+    background: url("~@/components/common/image/框.png");
+    background-size: 100% 100%;
+    // border: 1px solid #04ecff;
+    // border-radius: 8px;
     box-sizing: border-box;
-    padding: 9px 16px 14px;
+    padding: 20px 16px 14px;
     z-index: 120;
     > header {
       position: relative;
       padding: 2px 10px 6px;
+      top: 0vh;
+      width: 95%;
+      margin: 0 auto;
       .popup-title {
         font-size: 20px;
+        font-family: "YouSheBiaoTiHei";
       }
       .popup-close {
         position: absolute;
         top: 0;
-        right: 0;
+        right: 1vh;
         height: 100%;
         font-size: 32px;
         cursor: pointer;
       }
       .popup-fold {
         position: absolute;
-        top: 0;
-        left: 0;
-        height: 100%;
+        top: -0.5vh;
+        left: 1vh;
+        height: 85%;
         width: 30px;
         font-size: 40px;
         cursor: pointer;
         background-size: 100% 100%;
         background-image: url("~@/components/common/image/fold-up.png");
       }
+      .popup-img{
+        width: 97%;
+        height: 0.4vh;
+        margin: 0 auto;
+        background: url("~@/components/common/image/横线.png");
+        background-size: 100% 100%;
+      }
     }
     .popup-panel {
       flex: 1;
       height: 0;
+      width: 92%;
+      margin: 0 auto;
     }
     .popup-pagination {
       padding: 8px;
@@ -242,14 +272,77 @@ export default {
         background: rgba(255, 255, 255, 0.2) !important;
       }
     }
-    .el-table__body-wrapper{
-      min-height: 551px !important;
-
+    .el-table__header-wrapper .cell{
+      color: #00FFEB;
+      font-family: "PingFang";
     }
+    .el-table__body-wrapper {
+      min-height: 551px !important;
+      .cell{
+        font-family: "PingFang";
+      }
+    }
+
+    .el-table__row>td{
+      border: none;
+    }
+
+
     * {
       color: #fff;
       background: transparent !important;
+      border-bottom: none;
     }
   }
+
+  /deep/.warning-row{
+      background: #082C5D !important;
+  }
+  //最底部的横线
+  /deep/.el-table::before {
+      height: 0px;
+  }
+
+  /deep/.el-pagination.is-background .el-pager li:not(.disabled).active{
+    background-color:transparent;
+    background: url("~@/components/common/image/选中.png");
+    background-size: 100% 100%;
+    min-width: 2.8vh;
+    height: 2.8vh;
+  }
+  /deep/.el-pager li{
+    background-color:transparent;
+    background: url("~@/components/common/image/未选中.png");
+    background-size: 100% 100%;
+    min-width: 2.8vh;
+    height: 2.8vh;
+    color: #FFFFFF;
+  }
+  /deep/.btn-prev{
+    background-color:transparent;
+    background: url("~@/components/common/image/左键.png");
+    background-size: 100% 100%;
+    width: 4vh;
+    height: 5vh;
+    ::before{
+      content: "";
+    }
+  }
+  /deep/.btn-next{
+    background-color:transparent;
+    background: url("~@/components/common/image/右键.png");
+    background-size: 100% 100%;
+    width: 4vh;
+    height: 5vh;
+    ::before{
+      content: "";
+    }
+  }
+
+  /deep/.el-pager{
+    margin-top: 1.1vh;
+  }
+
 }
 </style>
+

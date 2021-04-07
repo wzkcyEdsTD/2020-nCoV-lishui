@@ -115,7 +115,9 @@ export default {
     },
     mapEventRegister() {
       this.view.when(() => {
+
         this.view.popup.watch("selectedFeature", (graphic) => {
+                  // debugger
           if (graphic) {
             const list = Object.keys(graphic.attributes).filter(item => !BANNED_PARAMS.includes(item) && !BANNED_PARAMS_COMPANY.includes(item))
             list.map(key=>{
