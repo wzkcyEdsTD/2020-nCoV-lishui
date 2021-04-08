@@ -100,7 +100,21 @@ const apiJSonGetRelation = (tableName, key, page) => {
             },
             "total@": "/[]/total"
         };
-    }else {
+    }else if(tableName == 'SzlsDwSjjhMzjFlyhylygzryxx'){
+        //疫苗接种数据
+        option.data = {
+            "[]": {
+                [tableName]: {
+                    "flyhylymc{}":[key],
+                },
+                "count": 100,
+                "page": page,
+                "query": 2
+            },
+            "total@": "/[]/total"
+        };
+    }
+    else {
         option.data = {
             "[]": {
                 [tableName]: {

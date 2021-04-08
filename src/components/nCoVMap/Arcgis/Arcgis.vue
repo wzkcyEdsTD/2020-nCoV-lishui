@@ -115,7 +115,6 @@ export default {
     },
     mapEventRegister() {
       this.view.when(() => {
-
         this.view.popup.watch("selectedFeature", (graphic) => {
                   // debugger
           if (graphic) {
@@ -273,6 +272,30 @@ export default {
                   "xjzd@现居住地",
                   "sjly@数据来源",
 
+                ],
+                primaryKey: "tongid"
+              },
+              foreignKey:""
+            });
+          }else if(event.action.id === "feature-fly-detail"){
+            // console.log('detail',);
+            const item = event.target.content.graphic.attributes;
+            this.$hub.$emit("set-detail-table", {
+              id:"flymd",
+              label: '福利院重点人群',
+              relation:true,
+              key:item.mc,
+              table: {
+                tableName: "SzlsDwSjjhMzjFlyhylygzryxx",
+                fields: [
+                  "xm@姓名",
+                  "sfzh@身份证号",
+                  "xb@性别",
+                  "zz@住址",
+                  "lxfs@联系方式",
+                  "stzk@身体状况",
+                  "sffrhhxdgrzz@是否发热或呼吸道感染症状",
+                  "flyhylymc@福利院和养老院名称",
                 ],
                 primaryKey: "tongid"
               },

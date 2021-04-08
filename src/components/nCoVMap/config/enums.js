@@ -289,7 +289,7 @@ export const xmMenu = [{
       }
     },
     {
-      id: 'inside-ll-gn',
+      id: 'theme_data@14',
       label: '福利院和养老院',
       amount: 97,
       unit: '所',
