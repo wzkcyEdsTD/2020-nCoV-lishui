@@ -119,12 +119,13 @@ export default {
                   // debugger
           if (graphic) {
             const list = Object.keys(graphic.attributes).filter(item => !BANNED_PARAMS.includes(item) && !BANNED_PARAMS_COMPANY.includes(item))
-            list.map(key=>{
-              if(!graphic.attributes[key]){
-                graphic.attributes[key]="-"
-              }
-            })
+            // list.map(key=>{
+            //   if(!graphic.attributes[key]){
+            //     graphic.attributes[key]="-"
+            //   }
+            // })
             const graphicTemplate = graphic.getEffectivePopupTemplate();
+            // debugger
             if (graphicTemplate.actions)
               graphicTemplate.actions.items[0].visible = graphic.attributes.video_url;
           }
@@ -282,7 +283,7 @@ export default {
             const item = event.target.content.graphic.attributes;
             this.$hub.$emit("set-detail-table", {
               id:"flymd",
-              label: '福利院重点人群',
+              label: '福利院和养老院重点人群',
               relation:true,
               key:item.mc,
               table: {

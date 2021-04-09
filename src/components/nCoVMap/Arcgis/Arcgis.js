@@ -14,11 +14,26 @@ const reg = new RegExp("[\u4e00-\u9fa5]");
 const doMassFeatureLayer = async (context, { url, id }, shallTop = true) => {
   const { data } = await fetchArcgisServer({ url, resultRecordCount: 0 });
   const fieldAliases = data.fieldAliases;
+  let list = []
+  Object.keys(fieldAliases)
+  .filter(item => !BANNED_PARAMS.includes(item) && !BANNED_PARAMS_COMPANY.includes(item))
+  .map(key =>{
+    reg.test(fieldAliases[key]) ? 
+    list.push({
+      name: `${key}_name`,
+      // title:`${key}_title`,
+      expression:`
+      if($feature.${key}!=null) return $feature.${key}
+      if($feature.${key}==null) return '-'
+      `
+    })
+    : ``
+  })
   const _html_ = Object.keys(fieldAliases)
     .filter(item => !BANNED_PARAMS.includes(item) && !BANNED_PARAMS_COMPANY.includes(item))
-    .map(key => reg.test(fieldAliases[key]) ? `<div><span>${fieldAliases[key]}</span><span>{${key || ""}}</span></div>` : ``
+    .map(key => reg.test(fieldAliases[key]) ? `<div><span>${fieldAliases[key]}</span><span>{expression/${key}_name}</span></div>` : ``
     ).join('')
-    console.log("html",_html_);
+    console.log(_html_);
   return new Promise((resolve, reject) => {
     if (context.map.findLayerById(id)) {
       context.map.findLayerById(id).visible = true;
@@ -29,6 +44,7 @@ const doMassFeatureLayer = async (context, { url, id }, shallTop = true) => {
         const option = { url, id, opacity: 1, outFields: ["*"], };
         option.popupTemplate = {
           // overwriteActions:true,
+          expressionInfos:list,
           actions: id == "theme_data@5"
             ? [{
               id: "feature-video-overview",
@@ -41,7 +57,7 @@ const doMassFeatureLayer = async (context, { url, id }, shallTop = true) => {
               }]
             :id == "theme_data@1" ? 
               [
-                {
+                {},{
                   id: "feature-yjmd-detail",
                   image: "/libs/img/video.png",
                   title: "移交名单"
@@ -79,7 +95,7 @@ const doMassFeatureLayer = async (context, { url, id }, shallTop = true) => {
                 title: "接种信息"
               }
             ] 
-             :[{
+            :[{
               id: "feature-video-overview",
               image: "/libs/img/video.png",
               title: "查看监控"
